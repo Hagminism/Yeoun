@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'core/routing/router.dart';
 import 'ui/app_colors.dart';
 import 'ui/app_text_styles.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Yeoun',
       theme: ThemeData(
         useMaterial3: true,
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         fontFamily: AppTextStyles.fontFamily,
         fontFamilyFallback: AppTextStyles.fontFamilyFallback,
       ),
-      home: const Scaffold(),
+      routerConfig: router,
     );
   }
 }
