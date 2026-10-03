@@ -1,0 +1,26 @@
+abstract final class AppAssets {
+  static const String _icons = 'assets/icons/home';
+  static const String albumDate = 'assets/images/home/album_date.jpg';
+  static const String albumWalk = 'assets/images/home/album_walk.jpg';
+  static const String culturePoster = 'assets/images/home/culture_poster.jpg';
+  static const String connectionBadge = '$_icons/connection_badge.svg';
+  static const String close = '$_icons/close.svg';
+  static const String listSmall = '$_icons/list_small.svg';
+  static const String arrow = '$_icons/arrow.svg';
+  static const String lock = '$_icons/lock.svg';
+  static const String clock = '$_icons/clock.svg';
+  static const String list = '$_icons/list.svg';
+  static const String check = '$_icons/check.svg';
+  static const String addCircle = '$_icons/add_circle.svg';
+  static const String arrowMore = '$_icons/arrow_more.svg';
+  static const String edit = '$_icons/edit.svg';
+  static const String sliders = '$_icons/sliders.svg';
+  static const String plus = '$_icons/plus.svg';
+  static const String bell = '$_icons/bell.svg';
+  static const String settingsSmall = '$_icons/settings_small.svg';
+  static const String home = '$_icons/home.svg';
+  static const String memories = '$_icons/memories.svg';
+  static const String buckets = '$_icons/buckets.svg';
+  static const String capsules = '$_icons/capsules.svg';
+  static const String settings = '$_icons/settings.svg';
+}
