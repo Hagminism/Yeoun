@@ -25,4 +25,9 @@ abstract final class AppColors {
   static const Color cultureText = Color(0xFF855000);
   static const Color apricotAccent = Color(0xFFFFB86A);
   static const Color disabledControl = Color(0xFFE7E5E4);
+  static const Color mutedSurface = Color(0xFFF1EDE4);
+  static const Color capsuleBadge = Color(0xFFA2671C);
+  static const Color controlInk = Color(0xFF2D2621);
+  static const Color navigationBorder = Color(0xFFE5E0D8);
+  static const Color checkedBackground = Color(0xFFE9E1DB);
 }

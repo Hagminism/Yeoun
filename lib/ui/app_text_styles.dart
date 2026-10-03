@@ -58,4 +58,37 @@ abstract final class AppTextStyles {
     bodyMedium: body,
     labelSmall: caption,
   );
+
+  static final TextStyle header = body.copyWith(
+    fontSize: 17,
+    height: 1.5,
+    fontWeight: FontWeight.w700,
+    color: AppColors.ink,
+    letterSpacing: -.425,
+  );
+  static final TextStyle cardTitle = body.copyWith(
+    fontSize: 16,
+    height: 1.5,
+    fontWeight: FontWeight.w700,
+    color: AppColors.ink,
+  );
+  static final TextStyle cardBody = body.copyWith(
+    fontSize: 13,
+    height: 1.5,
+    color: AppColors.ink,
+  );
+  static final TextStyle small = body.copyWith(
+    fontSize: 12,
+    height: 1.5,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle badge = caption.copyWith(
+    height: 1.5,
+    color: AppColors.bodyText,
+  );
+  static final TextStyle hero = title.copyWith(
+    height: 1.5,
+    fontWeight: FontWeight.w800,
+    letterSpacing: -.65,
+  );
 }
