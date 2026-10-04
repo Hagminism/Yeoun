@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/routing/routes.dart';
-import '../../../../di/home_view_model_provider.dart';
-import '../../../../ui/app_text_styles.dart';
+import 'home_view_model.dart';
+import '../../../../ui/presentation/component/app_dialog.dart';
 import 'home_action.dart';
 import 'home_event.dart';
 import 'home_screen.dart';
@@ -30,12 +30,12 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
     final viewModel = ref.read(homeViewModelProvider.notifier);
 
     _eventSubscription = viewModel.eventStream.listen((HomeEvent event) async {
+      if (!mounted) return;
+
       switch (event) {
         case HomeNavigateHome():
-          if (!mounted) return;
           context.go(Routes.home);
         case HomeComposeBucket():
-          if (!mounted) return;
           await _showTextInput(
             context,
             title: '새 버킷 추가하기',
@@ -45,7 +45,6 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
             },
           );
         case HomeComposeMemo():
-          if (!mounted) return;
           await _showTextInput(
             context,
             title: '오늘의 일기',
@@ -56,7 +55,6 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
             },
           );
         case HomeEditWidgets():
-          if (!mounted) return;
           await showModalBottomSheet<void>(
             context: context,
             isScrollControlled: true,
@@ -88,35 +86,24 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
             },
           );
         case HomeOpenDetail(:final type):
-          if (!mounted) return;
-          await showDialog<void>(
+          await AppDialog.show<void>(
             context: context,
             builder: (BuildContext dialogContext) {
-              return AlertDialog(
-                title: Text(type.label, style: AppTextStyles.cardTitle),
-                content: SizedBox(
-                  width: 400,
-                  child: SingleChildScrollView(
-                    child: HomeDetailContent(
-                      type: type,
-                      state: ref.read(homeViewModelProvider),
-                    ),
-                  ),
+              return AppDialog(
+                title: type.label,
+                content: HomeDetailContent(
+                  type: type,
+                  state: ref.read(homeViewModelProvider),
                 ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(dialogContext).pop();
-                    },
-                    child: const Text('닫기'),
-                  ),
-                ],
+                confirmLabel: '닫기',
+                onConfirm: () {
+                  Navigator.of(dialogContext).pop();
+                },
               );
             },
           );
         case HomeChooseRecord():
-          if (!mounted) return;
-          final selection = await showDialog<bool>(
+          final selection = await AppDialog.show<bool>(
             context: context,
             builder: (BuildContext dialogContext) {
               return HomeRecordMenu(
@@ -139,26 +126,20 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
                 : const HomeAction.addBucketRequested(),
           );
         case HomeShowNotifications():
-          if (!mounted) return;
-          await showDialog<void>(
+          await AppDialog.show<void>(
             context: context,
             builder: (BuildContext dialogContext) {
-              return AlertDialog(
-                title: Text('알림', style: AppTextStyles.cardTitle),
-                content: const Text('새로운 알림이 없어요.'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(dialogContext).pop();
-                    },
-                    child: const Text('닫기'),
-                  ),
-                ],
+              return AppDialog(
+                title: '알림',
+                message: '새로운 알림이 없어요.',
+                confirmLabel: '닫기',
+                onConfirm: () {
+                  Navigator.of(dialogContext).pop();
+                },
               );
             },
           );
         case HomeOpenSettings():
-          if (!mounted) return;
           await _showTextInput(
             context,
             title: '공간 이름',
@@ -184,7 +165,14 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
 
     return HomeScreen(
       state: ref.watch(homeViewModelProvider),
-      onAction: viewModel.onAction,
+      onAction: (HomeAction action) {
+        switch (action) {
+          case HomeSettingsRequested():
+            context.go(Routes.settings);
+          default:
+            viewModel.onAction(action);
+        }
+      },
     );
   }
 
@@ -197,7 +185,7 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
     bool multiline = false,
   }) async {
     final controller = TextEditingController(text: initialValue);
-    final value = await showDialog<String>(
+    final value = await AppDialog.show<String>(
       context: context,
       builder: (BuildContext dialogContext) {
         return HomeTextInputDialog(

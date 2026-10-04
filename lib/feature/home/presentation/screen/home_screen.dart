@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../core/presentation/screen/app_shell.dart';
 import '../../../../ui/app_colors.dart';
 import 'home_action.dart';
 import 'home_state.dart';
@@ -14,26 +13,27 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppShell(
-      onNavigationSelected: (int index) {
-        onAction(HomeAction.navigationSelected(index));
-      },
-      header: HomeHeader(
-        title: state.spaceTitle,
-        onNewRecord: () {
-          onAction(const HomeAction.newRecordRequested());
-        },
-        onNotifications: () {
-          onAction(const HomeAction.notificationsRequested());
-        },
-        onSettings: () {
-          onAction(const HomeAction.settingsRequested());
-        },
-      ),
-      body: ColoredBox(
-        color: AppColors.paper,
-        child: HomeDashboardLayout(state: state, onAction: onAction),
-      ),
+    return Column(
+      children: [
+        HomeHeader(
+          title: state.spaceTitle,
+          onNewRecord: () {
+            onAction(const HomeAction.newRecordRequested());
+          },
+          onNotifications: () {
+            onAction(const HomeAction.notificationsRequested());
+          },
+          onSettings: () {
+            onAction(const HomeAction.settingsRequested());
+          },
+        ),
+        Expanded(
+          child: ColoredBox(
+            color: AppColors.paper,
+            child: HomeDashboardLayout(state: state, onAction: onAction),
+          ),
+        ),
+      ],
     );
   }
 }

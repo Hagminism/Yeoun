@@ -28,6 +28,11 @@
 2. dart 코드의 String 은 작은 따옴표를 사용한다.
 3. 콜백을 작성해야할 일이 생긴다면 축약형으로 작성하지 말고 void Function(T) 형태로 작성할 것.
 
+# Flutter ViewModel Provider Rules
+
+1. Riverpod ViewModel provider는 별도 파일로 분리하지 않고 해당 ViewModel 파일의 최하단에 선언할 것.
+2. 이 규칙은 기존의 파일당 독립 객체 하나 규칙에 대한 ViewModel provider 선언의 예외로 적용할 것.
+
 # 커밋 메시지 작성 rules
 
 커밋 메시지를 작성할 때에는 다음과 같은 형태를 따를 것.

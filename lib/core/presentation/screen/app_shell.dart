@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../component/bottom_app_bar/app_bottom_app_bar.dart';
 import '../component/navigation_rail/app_navigation_rail.dart';
 import '../responsive/app_breakpoints.dart';
 
 class AppShell extends StatelessWidget {
-  final Widget header;
-  final Widget body;
-  final void Function(int) onNavigationSelected;
+  final StatefulNavigationShell navigationShell;
 
-  const AppShell({
-    super.key,
-    required this.header,
-    required this.body,
-    required this.onNavigationSelected,
-  });
+  const AppShell({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
@@ -42,21 +36,14 @@ class AppShell extends StatelessWidget {
                               child: IgnorePointer(
                                 ignoring: progress < .5,
                                 child: AppNavigationRail(
-                                  onSelected: onNavigationSelected,
+                                  navigationShell: navigationShell,
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          header,
-                          Expanded(child: body),
-                        ],
-                      ),
-                    ),
+                    Expanded(child: navigationShell),
                   ],
                 ),
               ),
@@ -75,7 +62,7 @@ class AppShell extends StatelessWidget {
                               child: IgnorePointer(
                                 ignoring: progress >= .5,
                                 child: AppBottomAppBar(
-                                  onSelected: onNavigationSelected,
+                                  navigationShell: navigationShell,
                                 ),
                               ),
                             ),

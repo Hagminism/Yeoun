@@ -6,6 +6,7 @@ flutter(dart) 개발 중, feature 구현(개발) 시에는 아래 규칙을 준�
     - 해당 파일에서만 사용하는 enum 같은 경우에도 별도의 파일로 분리해서 관리할 것.
     - 스크린에 여러 컴포넌트를 사용해야 할 경우, ~screen.dart 파일에 private 클래스 형태로 선언하여 사용하지 말 것. 대신, 재사용 가능한 위젯은
       presentation/component 경로로 분리해서 관리하고, 스크린 파일에서 import 하여 사용하는 형태로 관리할 것.
+    - 단, Riverpod ViewModel provider 선언은 해당 ViewModel 파일의 최하단에 함께 둘 수 있다.
 2. 아키텍처는 mvvm + mvi 기반 클린 아키텍처를 적용할 것. 해당 아키텍처는 루트의 /docs 디렉터리 내 convention.md 파일을 참고할 것.
 3. ~screen.dart 파일 하나에 위젯+로직을 모두 몰아버리지 말고, 비즈니스 로직은 viewModel로 분리할 것.
 4. 라우팅(context.go/push/pop 등의 이동)은 ~root.dart 파일에서 관리할 것.
