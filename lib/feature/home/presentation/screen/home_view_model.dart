@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/domain/model/bucket/bucket_item.dart';
-import '../../../../core/domain/model/memory/memo_entry.dart';
 import '../../data/home_mock_data.dart';
 import 'home_action.dart';
 import 'home_event.dart';
@@ -15,9 +14,6 @@ class HomeViewModel extends Notifier<HomeState> {
       anniversary: HomeMockData.anniversary,
       capsule: HomeMockData.capsule,
       buckets: HomeMockData.buckets,
-      memories: HomeMockData.memories,
-      memo: HomeMockData.memo,
-      culture: HomeMockData.culture,
       widgetConfigs: HomeMockData.widgetConfigs,
     );
   }
@@ -42,10 +38,6 @@ class HomeViewModel extends Notifier<HomeState> {
         _events.add(HomeEvent.composeBucket());
       case HomeBucketAdded(:final title):
         addBucket(title);
-      case HomeMemoRequested():
-        _events.add(HomeEvent.composeMemo());
-      case HomeMemoSaved(:final content):
-        saveMemo(content);
       case HomeEditWidgetsRequested():
         _events.add(HomeEvent.editWidgets());
       case HomeWidgetVisibilityChanged(:final id, :final visible):
@@ -57,8 +49,8 @@ class HomeViewModel extends Notifier<HomeState> {
         );
       case HomeWidgetsReordered(:final from, :final to):
         reorderWidgets(from, to);
-      case HomeDetailRequested(:final type):
-        _events.add(HomeEvent.openDetail(type));
+      case HomeDetailRequested():
+        break;
       case HomeNavigationSelected():
         break;
       case HomeNewRecordRequested():
@@ -88,17 +80,6 @@ class HomeViewModel extends Notifier<HomeState> {
         ),
         ...state.buckets,
       ],
-    );
-  }
-
-  void saveMemo(String content) {
-    final value = content.trim();
-    if (value.isEmpty) {
-      return;
-    }
-    state = state.copyWith(
-      memo: MemoEntry(title: '오늘의 일기', content: value, dateLabel: '오늘'),
-      memoCount: state.memoCount + 1,
     );
   }
 

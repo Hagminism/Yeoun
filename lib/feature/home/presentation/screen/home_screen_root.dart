@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/domain/model/space/space_widget_type.dart';
 import '../../../../core/routing/routes.dart';
 import 'home_view_model.dart';
 import '../../../../ui/presentation/component/app_dialog.dart';
 import 'home_action.dart';
 import 'home_event.dart';
 import 'home_screen.dart';
-import '../component/detail/home_detail_content.dart';
 import '../component/dialog/home_record_menu.dart';
 import '../component/dialog/home_text_input_dialog.dart';
 import '../component/dialog/home_widget_editor.dart';
@@ -44,16 +44,6 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
               viewModel.onAction(HomeAction.bucketAdded(value));
             },
           );
-        case HomeComposeMemo():
-          await _showTextInput(
-            context,
-            title: '오늘의 일기',
-            hint: '오늘 기억하고 싶은 순간은 무엇인가요?',
-            multiline: true,
-            onSave: (String value) {
-              viewModel.onAction(HomeAction.memoSaved(value));
-            },
-          );
         case HomeEditWidgets():
           await showModalBottomSheet<void>(
             context: context,
@@ -85,29 +75,12 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
               );
             },
           );
-        case HomeOpenDetail(:final type):
-          await AppDialog.show<void>(
-            context: context,
-            builder: (BuildContext dialogContext) {
-              return AppDialog(
-                title: type.label,
-                content: HomeDetailContent(
-                  type: type,
-                  state: ref.read(homeViewModelProvider),
-                ),
-                confirmLabel: '닫기',
-                onConfirm: () {
-                  Navigator.of(dialogContext).pop();
-                },
-              );
-            },
-          );
         case HomeChooseRecord():
           final selection = await AppDialog.show<bool>(
             context: context,
             builder: (BuildContext dialogContext) {
               return HomeRecordMenu(
-                onMemo: () {
+                onGeneralRecord: () {
                   Navigator.of(dialogContext).pop(true);
                 },
                 onBucket: () {
@@ -120,11 +93,11 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
             },
           );
           if (!mounted || selection == null) return;
-          viewModel.onAction(
-            selection
-                ? const HomeAction.memoRequested()
-                : const HomeAction.addBucketRequested(),
-          );
+          if (selection) {
+            context.go(Routes.homeGeneralRecord);
+          } else {
+            viewModel.onAction(const HomeAction.addBucketRequested());
+          }
         case HomeShowNotifications():
           await AppDialog.show<void>(
             context: context,
@@ -167,6 +140,8 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
       state: ref.watch(homeViewModelProvider),
       onAction: (HomeAction action) {
         switch (action) {
+          case HomeDetailRequested(:final type):
+            context.go(_locationFor(type));
           case HomeSettingsRequested():
             context.go(Routes.settings);
           default:
@@ -175,6 +150,14 @@ class _HomeScreenRootState extends ConsumerState<HomeScreenRoot> {
       },
     );
   }
+
+  String _locationFor(SpaceWidgetType type) => switch (type) {
+    SpaceWidgetType.anniversary => Routes.homeAnniversary,
+    SpaceWidgetType.capsule => Routes.homeCapsule,
+    SpaceWidgetType.bucket => Routes.homeBucket,
+    SpaceWidgetType.generalRecord => Routes.homeGeneralRecord,
+    SpaceWidgetType.culture => Routes.homeCulture,
+  };
 
   Future<void> _showTextInput(
     BuildContext context, {

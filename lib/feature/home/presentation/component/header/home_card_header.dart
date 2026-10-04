@@ -7,12 +7,14 @@ class HomeCardHeader extends StatelessWidget {
   final String title;
   final Widget? trailing;
   final bool capsule;
+  final String? iconAsset;
 
   const HomeCardHeader({
     super.key,
     required this.title,
     this.trailing,
     this.capsule = false,
+    this.iconAsset,
   });
 
   @override
@@ -20,7 +22,9 @@ class HomeCardHeader extends StatelessWidget {
     return Row(
       children: [
         if (capsule)
-          const Text('⏳', style: TextStyle(fontSize: 18))
+          Image.asset(AppAssets.hourglass3d, width: 24, height: 24)
+        else if (iconAsset != null)
+          Image.asset(iconAsset!, width: 24, height: 24)
         else
           const AppAssetIcon(AppAssets.list),
         const SizedBox(width: 8),

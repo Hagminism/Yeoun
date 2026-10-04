@@ -16,17 +16,14 @@ void main() {
     final viewModel = container.read(homeViewModelProvider.notifier);
     final initial = container.read(homeViewModelProvider);
 
-    viewModel.onAction(const HomeAction.widgetsReordered(0, 5));
+    final lastPosition = initial.widgetConfigs.length - 1;
+    viewModel.onAction(HomeAction.widgetsReordered(0, lastPosition));
     var state = container.read(homeViewModelProvider);
     expect(state.widgetConfigs.last.id, initial.widgetConfigs.first.id);
-    expect(state.widgetConfigs.map((config) => config.position), [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-    ]);
+    expect(
+      state.widgetConfigs.map((config) => config.position),
+      List<int>.generate(initial.widgetConfigs.length, (int index) => index),
+    );
     viewModel.onAction(
       const HomeAction.widgetVisibilityChanged('anniversary', false),
     );
@@ -47,12 +44,6 @@ void main() {
     viewModel.onAction(const HomeAction.bucketAdded('   '));
     expect(container.read(homeViewModelProvider), state);
 
-    viewModel.onAction(const HomeAction.memoSaved('오늘의 순간'));
-    expect(container.read(homeViewModelProvider).memo.content, '오늘의 순간');
-    expect(
-      container.read(homeViewModelProvider).memoCount,
-      initial.memoCount + 1,
-    );
     viewModel.onAction(const HomeAction.spaceRenamed('우리의 여운'));
     expect(container.read(homeViewModelProvider).spaceTitle, '우리의 여운');
   });

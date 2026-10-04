@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import '../../../../../ui/presentation/component/app_dialog.dart';
 
 class HomeRecordMenu extends StatelessWidget {
-  final void Function() onMemo;
+  final void Function() onGeneralRecord;
   final void Function() onBucket;
   final void Function() onClose;
 
   const HomeRecordMenu({
     super.key,
-    required this.onMemo,
+    required this.onGeneralRecord,
     required this.onBucket,
     required this.onClose,
   });
@@ -23,8 +23,8 @@ class HomeRecordMenu extends StatelessWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.edit_outlined),
-            title: const Text('오늘의 일기'),
-            onTap: onMemo,
+            title: const Text('일반 기록'),
+            onTap: onGeneralRecord,
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

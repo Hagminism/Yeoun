@@ -77,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   SettingsInfoRow(
                     title: 'Space 위젯 순서 및 추가',
-                    description: '타임캡슐, 버킷, 공유 앨범 배치 관리',
+                    description: '타임캡슐, 버킷, 일반 기록·문화 배치 관리',
                     onTap: () {
                       onAction(const SettingsAction.widgetsEditRequested());
                     },

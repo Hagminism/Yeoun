@@ -4,6 +4,8 @@ abstract final class AppAssets {
   static const String albumWalk = 'assets/images/home/album_walk.jpg';
   static const String culturePoster = 'assets/images/home/culture_poster.jpg';
   static const String wordmarkEn = 'assets/images/home/yeoun_wordmark_en.png';
+  static const String hourglass3d = 'assets/images/home/hourglass_3d.png';
+  static const String bucketList3d = 'assets/images/home/bucket_list_3d.png';
   static const String sparkle3d = 'assets/images/home/sparkle_3d.png';
   static const String connectionBadge = '$_icons/connection_badge.svg';
   static const String close = '$_icons/close.svg';

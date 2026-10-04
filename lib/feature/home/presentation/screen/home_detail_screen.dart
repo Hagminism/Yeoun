@@ -16,7 +16,6 @@ class HomeDetailScreen extends StatelessWidget {
   const HomeDetailScreen({super.key, required this.type, required this.state});
 
   String get _title => switch (type) {
-    SpaceWidgetType.memory => '기억들',
     SpaceWidgetType.capsule => '타임캡슐',
     _ => type.label,
   };
