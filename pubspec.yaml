@@ -67,6 +67,7 @@ flutter:
   assets:
     - assets/icons/home/
     - assets/images/home/
+    - assets/images/settings/
   fonts:
     - family: Pretendard
       fonts:
