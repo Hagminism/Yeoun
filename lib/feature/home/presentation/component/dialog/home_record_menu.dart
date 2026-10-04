@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_dialog.dart';
 
 class HomeRecordMenu extends StatelessWidget {
   final void Function() onMemo;
@@ -15,24 +15,27 @@ class HomeRecordMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('새 기록 작성', style: AppTextStyles.cardTitle),
+    return AppDialog(
+      title: '새 기록 작성',
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
+            contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.edit_outlined),
             title: const Text('오늘의 일기'),
             onTap: onMemo,
           ),
           ListTile(
+            contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.checklist),
             title: const Text('새 버킷'),
             onTap: onBucket,
           ),
         ],
       ),
-      actions: [TextButton(onPressed: onClose, child: const Text('닫기'))],
+      cancelLabel: '닫기',
+      onCancel: onClose,
     );
   }
 }
