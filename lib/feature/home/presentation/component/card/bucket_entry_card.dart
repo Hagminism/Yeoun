@@ -13,12 +13,14 @@ class BucketEntryCard extends StatelessWidget {
   final List<BucketItem> items;
   final void Function(String) onToggle;
   final void Function() onAdd;
+  final void Function() onOpen;
 
   const BucketEntryCard({
     super.key,
     required this.items,
     required this.onToggle,
     required this.onAdd,
+    required this.onOpen,
   });
 
   @override
@@ -30,10 +32,31 @@ class BucketEntryCard extends StatelessWidget {
         children: [
           HomeCardHeader(
             title: '버킷리스트',
-            trailing: HomeBadge(
-              label: '${items.where((item) => !item.completed).length}개 진행 중',
-              background: AppColors.sageBorder,
-              foreground: AppColors.sageText,
+            iconAsset: AppAssets.bucketList3d,
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                HomeBadge(
+                  label:
+                      '${items.where((item) => !item.completed).length}개 진행 중',
+                  background: AppColors.sageBorder,
+                  foreground: AppColors.sageText,
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: onOpen,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Text(
+                      '모두 보기  ›',
+                      style: AppTextStyles.small.copyWith(
+                        color: AppColors.coralDeep,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 12),

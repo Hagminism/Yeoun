@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../ui/app_assets.dart';
 import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
 import '../../../home/presentation/component/button/home_round_icon_button.dart';
 
 class SettingsHeader extends StatelessWidget {
@@ -25,12 +24,20 @@ class SettingsHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          Expanded(
-            child: Text(
-              '설정',
-              style: AppTextStyles.header.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
+          const Expanded(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 2),
+                  Image(
+                    image: AssetImage(AppAssets.wordmarkEn),
+                    height: 36,
+                    fit: BoxFit.contain,
+                    semanticLabel: 'Yeoun',
+                  ),
+                ],
               ),
             ),
           ),

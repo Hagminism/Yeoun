@@ -53,50 +53,8 @@ class HomeDetailContent extends StatelessWidget {
           Text(state.capsule.openingLabel, style: AppTextStyles.body),
         ],
       ),
-      SpaceWidgetType.memory => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          for (final memory in state.memories) ...[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                memory.imageAsset,
-                height: 180,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                semanticLabel: memory.title,
-              ),
-            ),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(memory.title),
-              subtitle: Text(memory.subtitle),
-            ),
-          ],
-        ],
-      ),
-      SpaceWidgetType.memo => Text(
-        state.memo.content,
-        style: AppTextStyles.body,
-      ),
-      SpaceWidgetType.culture => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(
-            state.culture.posterAsset,
-            height: 180,
-            semanticLabel: state.culture.title,
-          ),
-          const SizedBox(height: 16),
-          Text(state.culture.title, style: AppTextStyles.cardTitle),
-          const SizedBox(height: 8),
-          Text(
-            '⭐ ${state.culture.rating.toStringAsFixed(1)}',
-            style: AppTextStyles.body,
-          ),
-          Text(state.culture.review, style: AppTextStyles.small),
-        ],
-      ),
+      SpaceWidgetType.generalRecord ||
+      SpaceWidgetType.culture => const SizedBox.shrink(),
     };
   }
 }

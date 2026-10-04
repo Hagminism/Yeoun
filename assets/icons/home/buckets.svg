@@ -1,5 +1,10 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="19.1667" height="14.4469" viewBox="0 0 19.1667 14.4469" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Container">
-<path id="Icon" d="M3.40208 14.4469L0 11.0448L1.34167 9.70312L3.37812 11.7396L7.45104 7.66667L8.79271 9.03229L3.40208 14.4469V14.4469M3.40208 6.78021L0 3.37812L1.34167 2.03646L3.37812 4.07292L7.45104 0L8.79271 1.36563L3.40208 6.78021V6.78021M10.5417 12.5302V10.6135H19.1667V12.5302H10.5417V12.5302M10.5417 4.86354V2.94688H19.1667V4.86354H10.5417V4.86354" fill="#57423E"/>
-</g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#57423E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5.2" y="5.4" width="13.6" height="16" rx="2.4"/>
+    <path d="M8.9 3.3h6.2a1.6 1.6 0 0 1 1.6 1.6v1.1H7.3V4.9a1.6 1.6 0 0 1 1.6-1.6Z"/>
+    <rect x="7.4" y="9.1" width="3.3" height="3.3" rx="0.9"/>
+    <path d="M12.45 10.75h4.1"/>
+    <rect x="7.4" y="15.2" width="3.3" height="3.3" rx="0.9"/>
+    <path d="M12.45 16.85h4.1"/>
+  </g>
 </svg>

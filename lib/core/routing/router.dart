@@ -4,6 +4,8 @@ import '../presentation/screen/app_shell.dart';
 import '../../core/domain/model/space/space_widget_type.dart';
 import 'routes.dart';
 import '../../feature/bucket/presentation/screen/bucket_list_screen_root.dart';
+import '../../feature/culture/presentation/screen/culture_screen_root.dart';
+import '../../feature/general_record/presentation/screen/general_record_screen_root.dart';
 import '../../feature/home/presentation/screen/home_detail_screen_root.dart';
 import '../../feature/home/presentation/screen/home_screen_root.dart';
 import '../../feature/settings/presentation/screen/settings_screen_root.dart';
@@ -23,16 +25,44 @@ final GoRouter router = GoRouter(
               builder: (context, state) {
                 return const HomeScreenRoot();
               },
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: Routes.memories,
-              builder: (context, state) {
-                return const HomeDetailScreenRoot(type: SpaceWidgetType.memory);
-              },
+              routes: [
+                GoRoute(
+                  path: 'anniversary',
+                  builder: (context, state) {
+                    return const HomeDetailScreenRoot(
+                      type: SpaceWidgetType.anniversary,
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'time-capsule',
+                  builder: (context, state) {
+                    return const HomeDetailScreenRoot(
+                      type: SpaceWidgetType.capsule,
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'bucket-list',
+                  builder: (context, state) {
+                    return const HomeDetailScreenRoot(
+                      type: SpaceWidgetType.bucket,
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'general-record',
+                  builder: (context, state) {
+                    return const GeneralRecordScreenRoot();
+                  },
+                ),
+                GoRoute(
+                  path: 'culture',
+                  builder: (context, state) {
+                    return const CultureScreenRoot();
+                  },
+                ),
+              ],
             ),
           ],
         ),

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../../../ui/app_colors.dart';
@@ -32,6 +34,10 @@ class SettingsScreen extends StatelessWidget {
     final startDate = homeState.anniversary.startLabel
         .replaceAll('~', '')
         .trim();
+    final scrollBottomPadding = math.max(
+      32.0,
+      MediaQuery.paddingOf(context).bottom + 16,
+    );
 
     return ColoredBox(
       color: AppColors.paper,
@@ -39,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 560),
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+            padding: EdgeInsets.fromLTRB(16, 8, 16, scrollBottomPadding),
             children: [
               SettingsQuickAction(
                 onPressed: () {
@@ -71,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   SettingsInfoRow(
                     title: 'Space 위젯 순서 및 추가',
-                    description: '타임캡슐, 버킷, 공유 앨범 배치 관리',
+                    description: '타임캡슐, 버킷, 일반 기록·문화 배치 관리',
                     onTap: () {
                       onAction(const SettingsAction.widgetsEditRequested());
                     },

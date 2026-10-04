@@ -8,8 +8,6 @@ sealed class HomeAction with _$HomeAction {
   const factory HomeAction.toggleBucket(String id) = HomeToggleBucket;
   const factory HomeAction.addBucketRequested() = HomeAddBucketRequested;
   const factory HomeAction.bucketAdded(String title) = HomeBucketAdded;
-  const factory HomeAction.memoRequested() = HomeMemoRequested;
-  const factory HomeAction.memoSaved(String content) = HomeMemoSaved;
   const factory HomeAction.editWidgetsRequested() = HomeEditWidgetsRequested;
   const factory HomeAction.widgetVisibilityChanged(String id, bool visible) =
       HomeWidgetVisibilityChanged;

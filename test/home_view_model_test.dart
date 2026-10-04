@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yeoun/core/domain/model/bucket/bucket_item.dart';
+import 'package:yeoun/feature/general_record/presentation/screen/general_record_action.dart';
+import 'package:yeoun/feature/general_record/presentation/screen/general_record_view_model.dart';
 import 'package:yeoun/feature/home/presentation/screen/home_view_model.dart';
 import 'package:yeoun/feature/home/presentation/screen/home_action.dart';
 import 'package:yeoun/feature/home/presentation/screen/home_event.dart';
@@ -14,17 +16,14 @@ void main() {
     final viewModel = container.read(homeViewModelProvider.notifier);
     final initial = container.read(homeViewModelProvider);
 
-    viewModel.onAction(const HomeAction.widgetsReordered(0, 5));
+    final lastPosition = initial.widgetConfigs.length - 1;
+    viewModel.onAction(HomeAction.widgetsReordered(0, lastPosition));
     var state = container.read(homeViewModelProvider);
     expect(state.widgetConfigs.last.id, initial.widgetConfigs.first.id);
-    expect(state.widgetConfigs.map((config) => config.position), [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-    ]);
+    expect(
+      state.widgetConfigs.map((config) => config.position),
+      List<int>.generate(initial.widgetConfigs.length, (int index) => index),
+    );
     viewModel.onAction(
       const HomeAction.widgetVisibilityChanged('anniversary', false),
     );
@@ -45,14 +44,27 @@ void main() {
     viewModel.onAction(const HomeAction.bucketAdded('   '));
     expect(container.read(homeViewModelProvider), state);
 
-    viewModel.onAction(const HomeAction.memoSaved('오늘의 순간'));
-    expect(container.read(homeViewModelProvider).memo.content, '오늘의 순간');
-    expect(
-      container.read(homeViewModelProvider).memoCount,
-      initial.memoCount + 1,
-    );
     viewModel.onAction(const HomeAction.spaceRenamed('우리의 여운'));
     expect(container.read(homeViewModelProvider).spaceTitle, '우리의 여운');
+  });
+
+  test('General records are created through their feature state', () {
+    final container = ProviderContainer();
+    final subscription = container.listen(
+      generalRecordViewModelProvider,
+      (_, _) {},
+    );
+    addTearDown(subscription.close);
+    addTearDown(container.dispose);
+    final viewModel = container.read(generalRecordViewModelProvider.notifier);
+
+    viewModel.onAction(const GeneralRecordAction.createRequested());
+    viewModel.onAction(const GeneralRecordAction.contentChanged('오늘의 순간'));
+    viewModel.onAction(const GeneralRecordAction.saveRequested());
+
+    final entries = container.read(generalRecordViewModelProvider).entries;
+    expect(entries, hasLength(1));
+    expect(entries.single.content, '오늘의 순간');
   });
 
   test('Repeated commands emit distinct one-shot events', () async {

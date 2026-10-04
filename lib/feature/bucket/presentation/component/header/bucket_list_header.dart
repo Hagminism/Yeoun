@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../../core/presentation/responsive/app_breakpoints.dart';
 import '../../../../../ui/app_assets.dart';
 import '../../../../../ui/app_colors.dart';
-import '../../../../../ui/app_text_styles.dart';
 import '../../../../../ui/presentation/component/app_asset_icon.dart';
 
 class BucketListHeader extends StatelessWidget {
@@ -36,12 +35,21 @@ class BucketListHeader extends StatelessWidget {
               color: AppColors.paper,
               child: Row(
                 children: [
-                  Expanded(
-                    child: Text(
-                      '버킷리스트 🪣',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.header,
+                  const Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 2),
+                          Image(
+                            image: AssetImage(AppAssets.wordmarkEn),
+                            height: 36,
+                            fit: BoxFit.contain,
+                            semanticLabel: 'Yeoun',
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(width: 12),

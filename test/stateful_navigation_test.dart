@@ -22,11 +22,19 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: MyApp()));
     await tester.pumpAndSettle();
 
+    final bottomAppBarFinder = find.byType(AppBottomAppBar);
+    expect(
+      find.descendant(of: bottomAppBarFinder, matching: find.byType(Text)),
+      findsNWidgets(4),
+    );
+    expect(
+      find.descendant(of: bottomAppBarFinder, matching: find.text('기억들')),
+      findsNothing,
+    );
+    expect(tester.widget<Scaffold>(find.byType(Scaffold)).extendBody, isTrue);
+
     await tester.tap(
-      find.descendant(
-        of: find.byType(AppBottomAppBar),
-        matching: find.text('버킷'),
-      ),
+      find.descendant(of: bottomAppBarFinder, matching: find.text('버킷리스트')),
     );
     await tester.pumpAndSettle();
 
@@ -49,19 +57,13 @@ void main() {
     );
 
     await tester.tap(
-      find.descendant(
-        of: find.byType(AppBottomAppBar),
-        matching: find.text('설정'),
-      ),
+      find.descendant(of: bottomAppBarFinder, matching: find.text('설정')),
     );
     await tester.pumpAndSettle();
     expect(find.text('Space 관리'), findsOneWidget);
 
     await tester.tap(
-      find.descendant(
-        of: find.byType(AppBottomAppBar),
-        matching: find.text('버킷'),
-      ),
+      find.descendant(of: bottomAppBarFinder, matching: find.text('버킷리스트')),
     );
     await tester.pumpAndSettle();
 

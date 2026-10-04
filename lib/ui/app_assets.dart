@@ -3,6 +3,12 @@ abstract final class AppAssets {
   static const String albumDate = 'assets/images/home/album_date.jpg';
   static const String albumWalk = 'assets/images/home/album_walk.jpg';
   static const String culturePoster = 'assets/images/home/culture_poster.jpg';
+  static const String wordmarkEn = 'assets/images/home/yeoun_wordmark_en.png';
+  static const String hourglass3d = 'assets/images/home/hourglass_3d.png';
+  static const String bucketList3d = 'assets/images/home/bucket_list_3d.png';
+  static const String sparkle3d = 'assets/images/home/sparkle_3d.png';
+  static const String linkedEighthNotes3d =
+      'assets/images/home/linked_eighth_notes_3d.png';
   static const String connectionBadge = '$_icons/connection_badge.svg';
   static const String close = '$_icons/close.svg';
   static const String listSmall = '$_icons/list_small.svg';
@@ -19,7 +25,6 @@ abstract final class AppAssets {
   static const String bell = '$_icons/bell.svg';
   static const String settingsSmall = '$_icons/settings_small.svg';
   static const String home = '$_icons/home.svg';
-  static const String memories = '$_icons/memories.svg';
   static const String buckets = '$_icons/buckets.svg';
   static const String capsules = '$_icons/capsules.svg';
   static const String settings = '$_icons/settings.svg';

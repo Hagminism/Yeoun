@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/domain/model/space/space_widget_type.dart';
 import '../../screen/home_action.dart';
 import '../../screen/home_state.dart';
+import '../../../../culture/presentation/component/culture_home_card.dart';
+import '../../../../general_record/presentation/component/general_record_home_card.dart';
+import '../../../../general_record/presentation/screen/general_record_view_model.dart';
 import '../card/anniversary_card.dart';
 import '../card/capsule_entry_card.dart';
 import '../card/bucket_entry_card.dart';
-import '../card/memory_album_card.dart';
-import '../card/free_memo_card.dart';
-import '../card/culture_card.dart';
 
-class HomeWidgetWrapper extends StatelessWidget {
+class HomeWidgetWrapper extends ConsumerWidget {
   final SpaceWidgetType type;
   final HomeState state;
   final void Function(HomeAction) onAction;
@@ -22,7 +23,7 @@ class HomeWidgetWrapper extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return switch (type) {
       SpaceWidgetType.anniversary => AnniversaryCard(
         anniversary: state.anniversary,
@@ -44,22 +45,17 @@ class HomeWidgetWrapper extends StatelessWidget {
         onAdd: () {
           onAction(const HomeAction.addBucketRequested());
         },
-      ),
-      SpaceWidgetType.memory => MemoryAlbumCard(
-        memories: state.memories,
         onOpen: () {
           onAction(HomeAction.detailRequested(type));
         },
       ),
-      SpaceWidgetType.memo => FreeMemoCard(
-        memo: state.memo,
-        count: state.memoCount,
-        onWrite: () {
-          onAction(const HomeAction.memoRequested());
+      SpaceWidgetType.generalRecord => GeneralRecordHomeCard(
+        records: ref.watch(generalRecordViewModelProvider).entries,
+        onOpen: () {
+          onAction(HomeAction.detailRequested(type));
         },
       ),
-      SpaceWidgetType.culture => CultureCard(
-        record: state.culture,
+      SpaceWidgetType.culture => CultureHomeCard(
         onOpen: () {
           onAction(HomeAction.detailRequested(type));
         },

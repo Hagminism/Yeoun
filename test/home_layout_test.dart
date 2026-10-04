@@ -11,6 +11,7 @@ import 'package:yeoun/core/presentation/component/bottom_app_bar/app_bottom_app_
 import 'package:yeoun/core/presentation/component/navigation_rail/app_navigation_rail.dart';
 import 'package:yeoun/feature/home/presentation/component/card/anniversary_card.dart';
 import 'package:yeoun/feature/home/presentation/component/dialog/home_widget_editor.dart';
+import 'package:yeoun/feature/home/presentation/component/dialog/home_widget_toggle.dart';
 
 void main() {
   setUpAll(() async {
@@ -100,7 +101,7 @@ void main() {
       await tester.tap(find.text('위젯 추가 및 순서 편집'));
       await tester.pumpAndSettle();
       expect(find.byType(HomeWidgetEditor), findsOneWidget);
-      await tester.tap(find.byType(Switch).first);
+      await tester.tap(find.byType(HomeWidgetToggle).first);
       await tester.pumpAndSettle();
       await tester.tap(find.byTooltip('편집 닫기'));
       await tester.pumpAndSettle();

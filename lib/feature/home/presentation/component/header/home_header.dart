@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../../../../ui/app_colors.dart';
-import '../../../../../ui/app_text_styles.dart';
 import '../../../../../ui/app_assets.dart';
 
 import '../../../../../core/presentation/responsive/app_breakpoints.dart';
 import '../button/home_round_icon_button.dart';
 
 class HomeHeader extends StatelessWidget {
-  final String title;
   final void Function() onNewRecord;
   final void Function() onNotifications;
   final void Function() onSettings;
 
   const HomeHeader({
     super.key,
-    required this.title,
     required this.onNewRecord,
     required this.onNotifications,
     required this.onSettings,
@@ -38,12 +35,21 @@ class HomeHeader extends StatelessWidget {
               color: AppColors.paper,
               child: Row(
                 children: [
-                  Expanded(
-                    child: Text(
-                      '$title 🤍',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.header,
+                  const Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 2),
+                          Image(
+                            image: AssetImage(AppAssets.wordmarkEn),
+                            height: 36,
+                            fit: BoxFit.contain,
+                            semanticLabel: 'Yeoun',
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(width: 12),

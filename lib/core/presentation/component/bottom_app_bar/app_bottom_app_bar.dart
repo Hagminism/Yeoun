@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../ui/app_colors.dart';
@@ -12,58 +14,79 @@ class AppBottomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 65,
-      decoration: const BoxDecoration(
-        color: AppColors.paper,
-        border: Border(top: BorderSide(color: AppColors.navigationBorder)),
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(12),
+        topRight: Radius.circular(12),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Row(
-        children: [
-          for (var index = 0; index < AppNavigationItem.values.length; index++)
-            Expanded(
-              child: Semantics(
-                selected: index == navigationShell.currentIndex,
-                button: true,
-                child: InkWell(
-                  onTap: () {
-                    navigationShell.goBranch(index);
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Center(
-                          child: AppAssetIcon(
-                            AppNavigationItem.values[index].asset,
-                            tint: index == navigationShell.currentIndex
-                                ? AppColors.coralDeep
-                                : AppColors.bodyText,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        AppNavigationItem.values[index].label,
-                        style: AppTextStyles.badge.copyWith(
-                          height: 1,
-                          color: index == navigationShell.currentIndex
-                              ? AppColors.coralDeep
-                              : AppColors.bodyText,
-                          fontWeight: index == navigationShell.currentIndex
-                              ? FontWeight.w700
-                              : FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
+          height: 65,
+          decoration: BoxDecoration(
+            color: AppColors.paper.withValues(alpha: 0.7),
+            border: BoxBorder.fromLTRB(
+              top: BorderSide(
+                color: AppColors.navigationBorder.withValues(alpha: 0.4),
               ),
             ),
-        ],
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: Row(
+            children: [
+              for (
+                var index = 0;
+                index < AppNavigationItem.values.length;
+                index++
+              )
+                Expanded(
+                  child: Semantics(
+                    selected: index == navigationShell.currentIndex,
+                    button: true,
+                    child: InkWell(
+                      onTap: () {
+                        navigationShell.goBranch(index);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Center(
+                              child: AppAssetIcon(
+                                AppNavigationItem.values[index].asset,
+                                tint: index == navigationShell.currentIndex
+                                    ? AppColors.coralDeep
+                                    : AppColors.bodyText,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            AppNavigationItem.values[index].label,
+                            style: AppTextStyles.badge.copyWith(
+                              height: 1,
+                              color: index == navigationShell.currentIndex
+                                  ? AppColors.coralDeep
+                                  : AppColors.bodyText,
+                              fontWeight: index == navigationShell.currentIndex
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

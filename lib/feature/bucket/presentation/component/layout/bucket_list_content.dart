@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../../../../ui/app_colors.dart';
@@ -46,12 +48,16 @@ class BucketListContent extends StatelessWidget {
     final activeCount = entries
         .where((BucketListEntry entry) => !entry.completed)
         .length;
+    final scrollBottomPadding = math.max(
+      30.0,
+      MediaQuery.paddingOf(context).bottom + 16,
+    );
 
     return ColoredBox(
       color: AppColors.paper,
       child: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        padding: const EdgeInsets.fromLTRB(16, 4, 16, 30),
+        padding: EdgeInsets.fromLTRB(16, 4, 16, scrollBottomPadding),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 720),

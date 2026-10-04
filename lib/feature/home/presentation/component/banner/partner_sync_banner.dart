@@ -19,7 +19,7 @@ class PartnerSyncBanner extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       child: Row(
         children: [
-          const AppAssetIcon(AppAssets.connectionBadge),
+          Image.asset(AppAssets.bucketList3d, width: 40, height: 40),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
