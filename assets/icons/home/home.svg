@@ -1,5 +1,7 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="15.3333" height="17.25" viewBox="0 0 15.3333 17.25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Container">
-<path id="Icon" d="M1.91667 15.3333H4.79167V9.58333H10.5417V15.3333H13.4167V6.70833L7.66667 2.39583L1.91667 6.70833V15.3333V15.3333M0 17.25V5.75L7.66667 0L15.3333 5.75V17.25H8.625V11.5H6.70833V17.25H0V17.25M7.66667 8.86458V8.86458V8.86458V8.86458V8.86458V8.86458V8.86458V8.86458V8.86458V8.86458V8.86458" fill="#A6392C"/>
-</g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#57423E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.75 10.75L10.7 4.93a2 2 0 0 1 2.6 0l6.95 5.82"/>
+    <path d="M5.5 9.65v9.1c0 .97.78 1.75 1.75 1.75h9.5c.97 0 1.75-.78 1.75-1.75v-9.1"/>
+    <path d="M9.5 20.5v-4.8a2.5 2.5 0 0 1 5 0v4.8"/>
+  </g>
 </svg>
