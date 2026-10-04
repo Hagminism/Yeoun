@@ -19,6 +19,7 @@ class AppShell extends StatelessWidget {
           duration: const Duration(milliseconds: 220),
           builder: (BuildContext context, double progress, Widget? child) {
             return Scaffold(
+              extendBody: true,
               body: SafeArea(
                 bottom: false,
                 child: Row(

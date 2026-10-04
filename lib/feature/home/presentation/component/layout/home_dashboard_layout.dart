@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import '../../../../../core/presentation/responsive/app_breakpoints.dart';
 import '../../screen/home_action.dart';
@@ -22,6 +24,10 @@ class HomeDashboardLayout extends StatelessWidget {
       builder: (BuildContext context, BoxConstraints constraints) {
         final progress = AppBreakpoints.desktopProgress(constraints.maxWidth);
         final padding = 16 + 16 * progress;
+        final scrollBottomPadding = math.max(
+          56.0,
+          MediaQuery.paddingOf(context).bottom + 16,
+        );
         final configs =
             state.widgetConfigs.where((config) => config.visible).toList()
               ..sort(
@@ -47,7 +53,7 @@ class HomeDashboardLayout extends StatelessWidget {
                   padding,
                   4 + 12 * progress,
                   padding,
-                  56,
+                  scrollBottomPadding,
                 ),
                 child: AnimatedSize(
                   duration: const Duration(milliseconds: 220),

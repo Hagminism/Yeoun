@@ -22,6 +22,8 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: MyApp()));
     await tester.pumpAndSettle();
 
+    expect(tester.widget<Scaffold>(find.byType(Scaffold)).extendBody, isTrue);
+
     await tester.tap(
       find.descendant(
         of: find.byType(AppBottomAppBar),

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/domain/model/space/space_widget_type.dart';
@@ -21,6 +23,11 @@ class HomeDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scrollBottomPadding = math.max(
+      30.0,
+      MediaQuery.paddingOf(context).bottom + 16,
+    );
+
     return Column(
       children: [
         Container(
@@ -34,7 +41,7 @@ class HomeDetailScreen extends StatelessWidget {
           child: ColoredBox(
             color: AppColors.paper,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 30),
+              padding: EdgeInsets.fromLTRB(16, 4, 16, scrollBottomPadding),
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 720),
