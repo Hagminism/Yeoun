@@ -29,16 +29,6 @@ final GoRouter router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: Routes.memories,
-              builder: (context, state) {
-                return const HomeDetailScreenRoot(type: SpaceWidgetType.memory);
-              },
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
               path: Routes.bucketList,
               builder: (context, state) {
                 return const BucketListScreenRoot();

@@ -20,7 +20,6 @@ abstract final class AppAssets {
   static const String bell = '$_icons/bell.svg';
   static const String settingsSmall = '$_icons/settings_small.svg';
   static const String home = '$_icons/home.svg';
-  static const String memories = '$_icons/memories.svg';
   static const String buckets = '$_icons/buckets.svg';
   static const String capsules = '$_icons/capsules.svg';
   static const String settings = '$_icons/settings.svg';
