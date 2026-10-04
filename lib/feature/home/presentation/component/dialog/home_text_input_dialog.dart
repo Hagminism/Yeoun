@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_dialog.dart';
 
 class HomeTextInputDialog extends StatelessWidget {
   final String title;
@@ -21,42 +21,34 @@ class HomeTextInputDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(title, style: AppTextStyles.cardTitle),
-      content: SizedBox(
-        width: 360,
-        child: TextField(
-          controller: controller,
-          autofocus: true,
-          minLines: multiline ? 4 : 1,
-          maxLines: multiline ? 8 : 1,
-          maxLength: multiline ? 500 : 80,
-          decoration: InputDecoration(
-            hintText: hint,
-            border: const OutlineInputBorder(),
+    return ValueListenableBuilder<TextEditingValue>(
+      valueListenable: controller,
+      builder: (BuildContext context, TextEditingValue value, Widget? child) {
+        return AppDialog(
+          title: title,
+          content: TextField(
+            controller: controller,
+            autofocus: true,
+            minLines: multiline ? 4 : 1,
+            maxLines: multiline ? 8 : 1,
+            maxLength: multiline ? 500 : 80,
+            decoration: InputDecoration(
+              hintText: hint,
+              border: const OutlineInputBorder(),
+            ),
+            onSubmitted: (String input) {
+              if (!multiline && input.trim().isNotEmpty) onSave(input);
+            },
           ),
-          onSubmitted: (String value) {
-            if (!multiline && value.trim().isNotEmpty) onSave(value);
+          cancelLabel: '취소',
+          onCancel: onCancel,
+          confirmLabel: '저장',
+          onConfirm: () {
+            onSave(value.text);
           },
-        ),
-      ),
-      actions: [
-        TextButton(onPressed: onCancel, child: const Text('취소')),
-        ValueListenableBuilder<TextEditingValue>(
-          valueListenable: controller,
-          builder:
-              (BuildContext context, TextEditingValue value, Widget? child) {
-                return FilledButton(
-                  onPressed: value.text.trim().isEmpty
-                      ? null
-                      : () {
-                          onSave(value.text);
-                        },
-                  child: const Text('저장'),
-                );
-              },
-        ),
-      ],
+          confirmEnabled: value.text.trim().isNotEmpty,
+        );
+      },
     );
   }
 }
