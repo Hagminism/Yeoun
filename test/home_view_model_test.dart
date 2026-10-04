@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yeoun/core/domain/model/bucket/bucket_item.dart';
-import 'package:yeoun/di/home_view_model_provider.dart';
+import 'package:yeoun/feature/home/presentation/screen/home_view_model.dart';
 import 'package:yeoun/feature/home/presentation/screen/home_action.dart';
 import 'package:yeoun/feature/home/presentation/screen/home_event.dart';
 
