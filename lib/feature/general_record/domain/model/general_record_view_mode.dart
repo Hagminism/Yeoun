@@ -1,0 +1,1 @@
+enum GeneralRecordViewMode { feed, album }
