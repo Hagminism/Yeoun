@@ -16,7 +16,6 @@ class HomeScreen extends StatelessWidget {
     return Column(
       children: [
         HomeHeader(
-          title: state.spaceTitle,
           onNewRecord: () {
             onAction(const HomeAction.newRecordRequested());
           },
