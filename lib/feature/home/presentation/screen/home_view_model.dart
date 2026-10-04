@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/domain/model/bucket/bucket_item.dart';
 import '../../../../core/domain/model/memory/memo_entry.dart';
-import '../../../../core/domain/model/space/space_widget_type.dart';
 import '../../data/home_mock_data.dart';
 import 'home_action.dart';
 import 'home_event.dart';
@@ -60,19 +59,8 @@ class HomeViewModel extends Notifier<HomeState> {
         reorderWidgets(from, to);
       case HomeDetailRequested(:final type):
         _events.add(HomeEvent.openDetail(type));
-      case HomeNavigationSelected(:final index):
-        switch (index) {
-          case 0:
-            _events.add(HomeEvent.navigateHome());
-          case 1:
-            _events.add(HomeEvent.openDetail(SpaceWidgetType.memory));
-          case 2:
-            _events.add(HomeEvent.openDetail(SpaceWidgetType.bucket));
-          case 3:
-            _events.add(HomeEvent.openDetail(SpaceWidgetType.capsule));
-          case 4:
-            _events.add(HomeEvent.openSettings());
-        }
+      case HomeNavigationSelected():
+        break;
       case HomeNewRecordRequested():
         _events.add(HomeEvent.chooseRecord());
       case HomeNotificationsRequested():
