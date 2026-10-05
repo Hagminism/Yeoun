@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yeoun/ui/app_assets.dart';
 
 import '../../../../ui/app_colors.dart';
 import '../../../../ui/app_text_styles.dart';
@@ -70,7 +71,7 @@ class GeneralRecordScreen extends StatelessWidget {
                   ? state.editingId == null
                         ? '새 기록'
                         : '기록 수정'
-                  : '일반 기록',
+                  : '일기장',
               style: AppTextStyles.header.copyWith(fontSize: 18),
             ),
           ),
@@ -216,26 +217,20 @@ class GeneralRecordScreen extends StatelessWidget {
       padding: const EdgeInsets.only(top: 32),
       child: Column(
         children: [
-          Container(
-            width: 86,
-            height: 86,
-            decoration: const BoxDecoration(
-              color: AppColors.coralSoft,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.auto_awesome,
-              color: AppColors.coralDeep,
-              size: 36,
-            ),
-          ),
+          Image.asset(AppAssets.sparkle3d, width: 64, height: 64),
           const SizedBox(height: 18),
-          Text('아직 모인 기억이 없어요', style: AppTextStyles.cardTitle),
+          Text(
+            '아직 모인 기억이 없어요',
+            style: AppTextStyles.cardTitle.copyWith(fontSize: 18),
+          ),
           const SizedBox(height: 6),
           Text(
             '처음으로 남긴 순간이 이곳의 시작이 돼요.',
             textAlign: TextAlign.center,
-            style: AppTextStyles.small.copyWith(color: AppColors.secondaryText),
+            style: AppTextStyles.small.copyWith(
+              color: AppColors.secondaryText,
+              fontSize: 14,
+            ),
           ),
           const SizedBox(height: 18),
           _primaryAction(

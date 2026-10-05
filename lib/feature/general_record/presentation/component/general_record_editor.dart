@@ -26,12 +26,15 @@ class GeneralRecordEditor extends StatelessWidget {
       children: [
         Text(
           '오늘 마음에 남은 순간을\n천천히 적어보세요.',
-          style: AppTextStyles.heading.copyWith(height: 1.3),
+          style: AppTextStyles.heading.copyWith(height: 1.3, fontSize: 22),
         ),
-        const SizedBox(height: 7),
+        const SizedBox(height: 6),
         Text(
           '제목 없이 글과 사진으로 기억을 남길 수 있어요.',
-          style: AppTextStyles.small.copyWith(color: AppColors.secondaryText),
+          style: AppTextStyles.small.copyWith(
+            color: AppColors.secondaryText,
+            fontSize: 14,
+          ),
         ),
         const SizedBox(height: 22),
         TextFormField(
