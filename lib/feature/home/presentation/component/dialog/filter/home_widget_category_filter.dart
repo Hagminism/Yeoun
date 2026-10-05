@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/domain/model/space/space_widget_category.dart';
-import 'filter/home_widget_category_filter_button.dart';
+import '../../../../../../core/domain/model/space/space_widget_category.dart';
+import 'home_widget_category_filter_button.dart';
 
 class HomeWidgetCategoryFilter extends StatelessWidget {
   final SpaceWidgetCategory? selectedCategory;

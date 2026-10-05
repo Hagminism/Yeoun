@@ -3,7 +3,7 @@ import '../../../../../core/domain/model/space/space_widget_category.dart';
 import '../../../../../core/domain/model/space/space_widget_config.dart';
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
-import 'home_widget_category_filter.dart';
+import 'filter/home_widget_category_filter.dart';
 import 'home_widget_toggle.dart';
 
 class HomeWidgetEditor extends StatefulWidget {
