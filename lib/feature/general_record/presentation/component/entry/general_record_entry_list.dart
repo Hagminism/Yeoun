@@ -47,11 +47,14 @@ class GeneralRecordEntryList extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              '전체 ${entries.length}개',
-              style: AppTextStyles.caption.copyWith(
-                color: AppColors.bodyText,
-                fontSize: 12,
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                '전체 ${entries.length}개',
+                style: AppTextStyles.caption.copyWith(
+                  color: AppColors.bodyText,
+                  fontSize: 12,
+                ),
               ),
             ),
             const Spacer(),
