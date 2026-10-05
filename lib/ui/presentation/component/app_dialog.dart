@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app_colors.dart';
 import '../../app_text_styles.dart';
+import 'dialog/app_dialog_actions.dart';
 
 class AppDialog extends StatelessWidget {
   final String title;
@@ -48,7 +49,7 @@ class AppDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      insetPadding: const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxWidth: 540,
@@ -89,8 +90,7 @@ class AppDialog extends StatelessWidget {
                         Text(
                           dialogMessage ?? '',
                           style: AppTextStyles.body.copyWith(
-                            fontSize: 16,
-                            height: 1.5,
+                            fontSize: 15,
                             color: AppColors.secondaryText,
                           ),
                         ),
@@ -98,79 +98,19 @@ class AppDialog extends StatelessWidget {
                 ),
                 if (cancelLabel != null || confirmLabel != null) ...[
                   const SizedBox(height: 24),
-                  _buildActions(),
+                  AppDialogActions(
+                    cancelLabel: cancelLabel,
+                    confirmLabel: confirmLabel,
+                    onCancel: onCancel,
+                    onConfirm: onConfirm,
+                    confirmEnabled: confirmEnabled,
+                  ),
                 ],
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildActions() {
-    final String? dialogCancelLabel = cancelLabel;
-    final String? dialogConfirmLabel = confirmLabel;
-
-    if (dialogCancelLabel != null && dialogConfirmLabel != null) {
-      return Row(
-        children: [
-          Expanded(child: _buildCancelButton(dialogCancelLabel)),
-          const SizedBox(width: 12),
-          Expanded(child: _buildConfirmButton(dialogConfirmLabel)),
-        ],
-      );
-    }
-
-    if (dialogCancelLabel != null) {
-      return _buildCancelButton(dialogCancelLabel);
-    }
-
-    if (dialogConfirmLabel != null) {
-      return _buildConfirmButton(dialogConfirmLabel);
-    }
-
-    return const SizedBox.shrink();
-  }
-
-  Widget _buildCancelButton(String label) {
-    return TextButton(
-      onPressed: onCancel,
-      style: TextButton.styleFrom(
-        backgroundColor: AppColors.mutedSurface,
-        foregroundColor: AppColors.ink,
-        minimumSize: const Size(0, 56),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        textStyle: AppTextStyles.body.copyWith(
-          color: AppColors.ink,
-          fontSize: 17,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      child: Text(label, textAlign: TextAlign.center),
-    );
-  }
-
-  Widget _buildConfirmButton(String label) {
-    return FilledButton(
-      onPressed: confirmEnabled ? onConfirm : null,
-      style: FilledButton.styleFrom(
-        backgroundColor: confirmEnabled
-            ? AppColors.coralDeep
-            : AppColors.disabledControl,
-        foregroundColor: confirmEnabled
-            ? AppColors.surface
-            : AppColors.disabledText,
-        minimumSize: const Size(0, 56),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        textStyle: AppTextStyles.body.copyWith(
-          fontSize: 17,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      child: Text(label, textAlign: TextAlign.center),
     );
   }
 }
