@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../feature/home/presentation/screen/home_view_model.dart';
-import '../../../../ui/presentation/component/app_dialog.dart';
+import '../../../../ui/presentation/component/dialog/app_dialog.dart';
 import '../../../home/presentation/component/dialog/home_text_input_dialog.dart';
 import '../../../home/presentation/component/dialog/home_widget_editor.dart';
 import '../../../home/presentation/screen/home_action.dart';

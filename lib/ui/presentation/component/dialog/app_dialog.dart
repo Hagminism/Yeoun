@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../app_colors.dart';
-import '../../app_text_styles.dart';
-import 'dialog/app_dialog_actions.dart';
+import '../../../app_colors.dart';
+import '../../../app_text_styles.dart';
+import 'app_dialog_actions.dart';
 
 class AppDialog extends StatelessWidget {
   final String title;

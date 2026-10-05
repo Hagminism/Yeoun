@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../ui/presentation/component/app_dialog.dart';
+import '../../../../../ui/presentation/component/dialog/app_dialog.dart';
 
 class HomeRecordMenu extends StatelessWidget {
   final void Function() onGeneralRecord;

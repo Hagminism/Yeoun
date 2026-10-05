@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../feature/home/presentation/screen/home_action.dart';
 import '../../../../core/routing/routes.dart';
-import '../../../../ui/presentation/component/app_dialog.dart';
+import '../../../../ui/presentation/component/dialog/app_dialog.dart';
 import '../../../home/presentation/screen/home_view_model.dart';
 import '../../data/mapper/bucket_list_entry_mapper.dart';
 import 'bucket_list_action.dart';

@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/domain/model/space/space_widget_type.dart';
 import '../../../../core/routing/routes.dart';
 import 'home_view_model.dart';
-import '../../../../ui/presentation/component/app_dialog.dart';
+import '../../../../ui/presentation/component/dialog/app_dialog.dart';
 import 'home_action.dart';
 import 'home_event.dart';
 import 'home_screen.dart';
