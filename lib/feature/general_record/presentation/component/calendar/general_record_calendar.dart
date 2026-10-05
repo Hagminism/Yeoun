@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import 'calendar/general_record_calendar_month_button.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import 'general_record_calendar_month_button.dart';
 
 class GeneralRecordCalendar extends StatelessWidget {
   final DateTime selectedDate;

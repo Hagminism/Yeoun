@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import '../../domain/model/culture_member.dart';
-import 'member/culture_member_button.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../../../domain/model/culture_member.dart';
+import 'culture_member_button.dart';
 
 class CultureMemberSwitcher extends StatelessWidget {
   final List<CultureMember> members;

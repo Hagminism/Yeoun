@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../domain/model/culture_kind.dart';
-import 'artwork/culture_artwork_placeholder.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../domain/model/culture_kind.dart';
+import 'culture_artwork_placeholder.dart';
 
 class CultureArtworkView extends StatelessWidget {
   final String artworkBase64;

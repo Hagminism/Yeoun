@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import '../screen/general_record_action.dart';
-import '../screen/general_record_state.dart';
-import 'general_record_calendar.dart';
-import 'general_record_photo_gallery.dart';
-import 'editor/general_record_editor_date_button.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../../screen/general_record_action.dart';
+import '../../screen/general_record_state.dart';
+import '../calendar/general_record_calendar.dart';
+import '../photo_gallery/general_record_photo_gallery.dart';
+import 'general_record_editor_date_button.dart';
 
 class GeneralRecordEditor extends StatelessWidget {
   final GeneralRecordState state;

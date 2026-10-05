@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import '../../../../ui/presentation/component/app_card_surface.dart';
-import '../screen/culture_state.dart';
-import '../screen/culture_view_model.dart';
-import 'culture_action_target.dart';
-import 'culture_artwork_view.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_card_surface.dart';
+import '../../screen/culture_state.dart';
+import '../../screen/culture_view_model.dart';
+import '../artwork/culture_artwork_view.dart';
+import '../interaction/culture_action_target.dart';
 
 class CultureHomeCard extends ConsumerWidget {
   final void Function() onOpen;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../domain/model/general_record_view_mode.dart';
-import 'view_toggle/general_record_view_option.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../domain/model/general_record_view_mode.dart';
+import 'general_record_view_option.dart';
 
 class GeneralRecordViewToggle extends StatelessWidget {
   static const double _optionWidth = 76;

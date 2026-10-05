@@ -2,10 +2,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import '../../domain/model/general_record_photo.dart';
-import 'photo_viewer/general_record_photo_navigation_button.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../../../domain/model/general_record_photo.dart';
+import 'general_record_photo_navigation_button.dart';
 
 class GeneralRecordPhotoViewer extends StatefulWidget {
   final List<GeneralRecordPhoto> photos;

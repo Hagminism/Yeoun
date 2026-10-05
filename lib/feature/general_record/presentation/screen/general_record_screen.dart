@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../ui/app_colors.dart';
 import '../component/entry/general_record_entry_list.dart';
-import '../component/general_record_editor.dart';
+import '../component/editor/general_record_editor.dart';
 import '../component/header/general_record_header.dart';
 import 'general_record_action.dart';
 import 'general_record_state.dart';

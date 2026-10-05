@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../../ui/app_colors.dart';
+import '../../../../../ui/app_colors.dart';
 
 class CultureActionTarget extends StatefulWidget {
   final String semanticLabel;

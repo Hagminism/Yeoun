@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
-import '../culture_action_target.dart';
+import '../interaction/culture_action_target.dart';
 import 'culture_month_arrow_button.dart';
 
 class CultureCalendar extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
 import '../../../domain/model/culture_member.dart';
-import '../culture_action_target.dart';
+import '../interaction/culture_action_target.dart';
 
 class CultureMemberButton extends StatelessWidget {
   final CultureMember member;

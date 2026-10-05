@@ -4,14 +4,14 @@ import '../../../../core/presentation/responsive/app_breakpoints.dart';
 import '../../../../ui/app_colors.dart';
 import '../../domain/model/culture_member.dart';
 import '../../domain/model/culture_work.dart';
-import '../component/culture_editor_panel.dart';
+import '../component/editor/culture_editor_panel.dart';
 import '../component/section/culture_empty_work_board.dart';
 import '../component/section/culture_intro_section.dart';
 import '../component/section/culture_review_footnote.dart';
 import '../component/section/culture_work_section_heading.dart';
-import '../component/culture_member_switcher.dart';
-import '../component/culture_page_header.dart';
-import '../component/culture_work_card.dart';
+import '../component/member/culture_member_switcher.dart';
+import '../component/header/culture_page_header.dart';
+import '../component/work/culture_work_card.dart';
 import 'culture_action.dart';
 import 'culture_state.dart';
 

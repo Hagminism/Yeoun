@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import '../../domain/model/culture_kind.dart';
-import '../../domain/model/culture_review.dart';
-import '../../domain/model/culture_work.dart';
-import '../screen/culture_action.dart';
-import 'culture_artwork_view.dart';
-import 'culture_action_target.dart';
-import 'culture_date_picker.dart';
-import 'culture_rating_picker.dart';
-import 'editor/culture_kind_option.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../../../domain/model/culture_kind.dart';
+import '../../../domain/model/culture_review.dart';
+import '../../../domain/model/culture_work.dart';
+import '../../screen/culture_action.dart';
+import '../artwork/culture_artwork_view.dart';
+import '../date_picker/culture_date_picker.dart';
+import '../interaction/culture_action_target.dart';
+import '../review/culture_rating_picker.dart';
+import 'culture_kind_option.dart';
 
 class CultureEditorPanel extends StatefulWidget {
   final CultureWork? work;

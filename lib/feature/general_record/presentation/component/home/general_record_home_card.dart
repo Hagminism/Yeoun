@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_assets.dart';
-import '../../../../ui/app_text_styles.dart';
-import '../../../../ui/presentation/component/app_card_surface.dart';
-import '../../domain/model/general_record.dart';
-import 'home/preview/general_record_record_preview.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_assets.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_card_surface.dart';
+import '../../../domain/model/general_record.dart';
+import 'preview/general_record_record_preview.dart';
 
 class GeneralRecordHomeCard extends StatelessWidget {
   final List<GeneralRecord> records;

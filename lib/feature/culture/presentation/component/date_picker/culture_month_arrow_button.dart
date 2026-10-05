@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../ui/app_colors.dart';
-import '../culture_action_target.dart';
+import '../interaction/culture_action_target.dart';
 
 class CultureMonthArrowButton extends StatelessWidget {
   final IconData icon;

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import '../../domain/model/culture_member.dart';
-import '../../domain/model/culture_review.dart';
-import '../../domain/model/culture_work.dart';
-import '../screen/culture_action.dart';
-import 'culture_action_target.dart';
-import 'culture_artwork_view.dart';
-import 'review/culture_work_review_row.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../../../domain/model/culture_member.dart';
+import '../../../domain/model/culture_review.dart';
+import '../../../domain/model/culture_work.dart';
+import '../../screen/culture_action.dart';
+import '../artwork/culture_artwork_view.dart';
+import '../interaction/culture_action_target.dart';
+import '../review/culture_work_review_row.dart';
 
 class CultureWorkCard extends StatelessWidget {
   final CultureWork work;

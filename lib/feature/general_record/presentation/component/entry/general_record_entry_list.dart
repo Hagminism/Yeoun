@@ -6,10 +6,10 @@ import '../../../domain/model/general_record.dart';
 import '../../../domain/model/general_record_photo.dart';
 import '../../../domain/model/general_record_view_mode.dart';
 import '../../screen/general_record_action.dart';
-import '../general_record_photo_viewer.dart';
-import '../general_record_view_toggle.dart';
+import '../photo_viewer/general_record_photo_viewer.dart';
+import '../view_toggle/general_record_view_toggle.dart';
 import 'general_record_empty_state.dart';
-import '../general_record_entry_card.dart';
+import '../entry_card/general_record_entry_card.dart';
 
 class GeneralRecordEntryList extends StatelessWidget {
   final List<GeneralRecord> entries;

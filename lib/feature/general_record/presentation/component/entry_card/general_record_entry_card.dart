@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/model/general_record.dart';
-import '../../domain/model/general_record_photo.dart';
-import '../../domain/model/general_record_view_mode.dart';
-import 'entry_card/album/general_record_album_card_content.dart';
-import 'entry_card/feed/general_record_feed_card_content.dart';
+import '../../../domain/model/general_record.dart';
+import '../../../domain/model/general_record_photo.dart';
+import '../../../domain/model/general_record_view_mode.dart';
+import 'album/general_record_album_card_content.dart';
+import 'feed/general_record_feed_card_content.dart';
 
 class GeneralRecordEntryCard extends StatelessWidget {
   final GeneralRecord entry;

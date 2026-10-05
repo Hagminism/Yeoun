@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import 'culture_action_target.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../interaction/culture_action_target.dart';
 
 class CultureRatingPicker extends StatelessWidget {
   final double? rating;

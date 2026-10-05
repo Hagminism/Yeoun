@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
-import '../screen/culture_action.dart';
-import 'culture_action_target.dart';
+import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/app_text_styles.dart';
+import '../../screen/culture_action.dart';
+import '../interaction/culture_action_target.dart';
 
 class CulturePageHeader extends StatelessWidget {
   final void Function(CultureAction action) onAction;
