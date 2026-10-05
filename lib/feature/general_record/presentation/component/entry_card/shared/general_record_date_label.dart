@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../ui/app_colors.dart';
+import '../../../../../../ui/app_assets.dart';
 import '../../../../../../ui/app_text_styles.dart';
+import '../../../../../../ui/presentation/component/app_asset_icon.dart';
 
 class GeneralRecordDateLabel extends StatelessWidget {
   final DateTime date;
@@ -14,11 +15,7 @@ class GeneralRecordDateLabel extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(
-              Icons.calendar_today_rounded,
-              size: 13,
-              color: AppColors.coral,
-            ),
+            const AppAssetIcon(AppAssets.calendar3d, width: 16, height: 16),
             const SizedBox(width: 6),
             Text(
               '${date.year}.${date.month.toString().padLeft(2, '0')}.${date.day.toString().padLeft(2, '0')}',

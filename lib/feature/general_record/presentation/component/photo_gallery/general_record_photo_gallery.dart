@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../ui/app_assets.dart';
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_asset_icon.dart';
 import '../../../domain/model/general_record_photo.dart';
 import 'general_record_photo_gallery_item.dart';
 
@@ -64,12 +66,16 @@ class GeneralRecordPhotoGallery extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              selectingPhotos
-                                  ? Icons.more_horiz
-                                  : Icons.add_photo_alternate_outlined,
-                              color: AppColors.coralDeep,
-                            ),
+                            selectingPhotos
+                                ? const Icon(
+                                    Icons.more_horiz,
+                                    color: AppColors.coralDeep,
+                                  )
+                                : const AppAssetIcon(
+                                    AppAssets.camera3d,
+                                    width: 24,
+                                    height: 24,
+                                  ),
                             const SizedBox(height: 4),
                             Text(
                               selectingPhotos ? '불러오는 중' : '사진 추가',

@@ -36,7 +36,7 @@ class GeneralRecordHomeCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset(AppAssets.sparkle3d, width: 22, height: 22),
+                Image.asset(AppAssets.sparkle3d, width: 24, height: 24),
                 const SizedBox(width: 8),
                 Expanded(child: Text('일기장', style: AppTextStyles.cardTitle)),
                 const Icon(

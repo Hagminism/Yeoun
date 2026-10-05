@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../ui/app_assets.dart';
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_asset_icon.dart';
 
 class GeneralRecordEditorDateButton extends StatelessWidget {
   final DateTime date;
@@ -34,11 +36,7 @@ class GeneralRecordEditorDateButton extends StatelessWidget {
             ),
             child: Row(
               children: [
-                const Icon(
-                  Icons.calendar_month_outlined,
-                  color: AppColors.coralDeep,
-                  size: 20,
-                ),
+                const AppAssetIcon(AppAssets.calendar3d, width: 20, height: 20),
                 const SizedBox(width: 9),
                 Expanded(
                   child: Text(
