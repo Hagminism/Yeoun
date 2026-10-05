@@ -60,7 +60,7 @@ class BucketListHeader extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   BucketListHeaderActionButton(
-                    asset: AppAssets.bell,
+                    asset: AppAssets.bell3d,
                     label: '알림',
                     onPressed: onNotifications,
                   ),
