@@ -5,6 +5,7 @@ import '../../../../../ui/app_assets.dart';
 import '../../../../../ui/presentation/component/app_asset_icon.dart';
 
 import '../../../../../core/domain/model/bucket/bucket_item.dart';
+import 'home_bucket_category_label.dart';
 
 class BucketSummaryItem extends StatelessWidget {
   final BucketItem item;
@@ -65,8 +66,8 @@ class BucketSummaryItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Text(
-                  item.category,
+                HomeBucketCategoryLabel(
+                  category: item.category,
                   style: AppTextStyles.small.copyWith(height: 1.33),
                 ),
               ],

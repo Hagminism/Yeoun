@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../../../ui/app_assets.dart';
+import '../../../../../ui/presentation/component/app_asset_icon.dart';
 import '../../../../../ui/presentation/component/dialog/app_dialog.dart';
 
 class HomeRecordMenu extends StatelessWidget {
@@ -22,7 +25,7 @@ class HomeRecordMenu extends StatelessWidget {
         children: [
           ListTile(
             contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.edit_outlined),
+            leading: const AppAssetIcon(AppAssets.pencil3d),
             title: const Text('일반 기록'),
             onTap: onGeneralRecord,
           ),

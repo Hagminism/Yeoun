@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/domain/model/space/space_widget_type.dart';
 import '../../../../../ui/app_text_styles.dart';
+import '../list_item/home_bucket_category_label.dart';
 import '../../screen/home_state.dart';
 
 class HomeDetailContent extends StatelessWidget {
@@ -36,7 +37,7 @@ class HomeDetailContent extends StatelessWidget {
                     : Icons.circle_outlined,
               ),
               title: Text(item.title, style: AppTextStyles.cardBody),
-              subtitle: Text(item.category),
+              subtitle: HomeBucketCategoryLabel(category: item.category),
             ),
         ],
       ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../ui/app_assets.dart';
 import '../../../../../../ui/app_colors.dart';
 import '../../../../../../ui/app_text_styles.dart';
+import '../../../../../../ui/presentation/component/app_asset_icon.dart';
 
 class BucketListEntryProgress extends StatelessWidget {
   final double progress;
@@ -20,11 +22,7 @@ class BucketListEntryProgress extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Icon(
-              Icons.camera_alt_outlined,
-              size: 14,
-              color: AppColors.coralDeep,
-            ),
+            const AppAssetIcon(AppAssets.camera3d, width: 16, height: 16),
             const SizedBox(width: 4),
             Text(
               label,

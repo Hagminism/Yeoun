@@ -80,7 +80,7 @@ class FreeMemoCard extends StatelessWidget {
           const SizedBox(height: 12),
           HomeActionButton(
             label: '오늘 일기 남겨볼까요?',
-            trailingAsset: AppAssets.edit,
+            trailingAsset: AppAssets.pencil3d,
             background: AppColors.surface,
             onPressed: onWrite,
           ),
