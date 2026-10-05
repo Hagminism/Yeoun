@@ -131,6 +131,7 @@ class GeneralRecordHomeCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.small.copyWith(
+                  fontWeight: FontWeight.w500,
                   color: AppColors.ink,
                   fontSize: 14,
                 ),
