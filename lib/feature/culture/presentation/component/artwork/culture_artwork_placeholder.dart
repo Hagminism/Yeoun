@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../ui/app_assets.dart';
 import '../../../../../ui/app_colors.dart';
+import '../../../../../ui/presentation/component/app_asset_icon.dart';
 import '../../../domain/model/culture_kind.dart';
 
 class CultureArtworkPlaceholder extends StatelessWidget {
@@ -10,18 +12,42 @@ class CultureArtworkPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final IconData icon = switch (kind) {
-      CultureKind.movie || CultureKind.drama => Icons.local_movies_outlined,
-      CultureKind.book => Icons.menu_book_rounded,
-      CultureKind.game => Icons.sports_esports_rounded,
-      CultureKind.music => Icons.music_note_rounded,
-      CultureKind.performance => Icons.theater_comedy_rounded,
-      CultureKind.other => Icons.auto_awesome_rounded,
+    final Widget icon = switch (kind) {
+      CultureKind.movie || CultureKind.drama => const AppAssetIcon(
+        AppAssets.movieProjector3d,
+        width: 32,
+        height: 32,
+      ),
+      CultureKind.book => const Icon(
+        Icons.menu_book_rounded,
+        color: AppColors.cultureText,
+        size: 28,
+      ),
+      CultureKind.game => const Icon(
+        Icons.sports_esports_rounded,
+        color: AppColors.cultureText,
+        size: 28,
+      ),
+      CultureKind.music => const Icon(
+        Icons.music_note_rounded,
+        color: AppColors.cultureText,
+        size: 28,
+      ),
+      CultureKind.performance => const Icon(
+        Icons.theater_comedy_rounded,
+        color: AppColors.cultureText,
+        size: 28,
+      ),
+      CultureKind.other => const Icon(
+        Icons.auto_awesome_rounded,
+        color: AppColors.cultureText,
+        size: 28,
+      ),
     };
 
     return ColoredBox(
       color: AppColors.cream,
-      child: Center(child: Icon(icon, color: AppColors.cultureText, size: 28)),
+      child: Center(child: icon),
     );
   }
 }

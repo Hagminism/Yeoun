@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../ui/app_assets.dart';
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_asset_icon.dart';
 
 class CultureEmptyWorkBoard extends StatelessWidget {
   const CultureEmptyWorkBoard({super.key});
@@ -17,11 +19,7 @@ class CultureEmptyWorkBoard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Icon(
-            Icons.local_movies_outlined,
-            color: AppColors.cultureText,
-            size: 31,
-          ),
+          const AppAssetIcon(AppAssets.movieProjector3d, width: 34, height: 34),
           const SizedBox(height: 9),
           Text('첫 작품을 기록해 볼까요?', style: AppTextStyles.cardTitle),
           const SizedBox(height: 4),

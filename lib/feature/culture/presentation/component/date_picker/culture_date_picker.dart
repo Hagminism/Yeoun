@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../ui/app_assets.dart';
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_asset_icon.dart';
 import '../interaction/culture_action_target.dart';
 import 'culture_calendar.dart';
 
@@ -61,11 +63,7 @@ class _CultureDatePickerState extends State<CultureDatePicker> {
             ),
             child: Row(
               children: [
-                const Icon(
-                  Icons.calendar_month_rounded,
-                  size: 18,
-                  color: AppColors.cultureText,
-                ),
+                const AppAssetIcon(AppAssets.calendar3d, width: 18, height: 18),
                 const SizedBox(width: 9),
                 Expanded(
                   child: Text(

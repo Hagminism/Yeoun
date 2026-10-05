@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yeoun/ui/app_assets.dart';
 
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
@@ -26,26 +27,27 @@ class CultureHomeCard extends ConsumerWidget {
         children: [
           Row(
             children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppAssets.movieProjector3d,
+                    width: 24,
+                    height: 24,
+                  ),
+                  const SizedBox(height: 1),
+                ],
+              ),
+              const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  '문화 기록장',
+                  '문화 생활',
                   style: AppTextStyles.cardTitle.copyWith(fontSize: 15),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-                decoration: BoxDecoration(
-                  color: AppColors.apricotAccent,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  'CULTURE',
-                  style: AppTextStyles.caption.copyWith(
-                    color: AppColors.cultureText,
-                    fontSize: 9,
-                    letterSpacing: .6,
-                  ),
-                ),
+              const Icon(
+                Icons.chevron_right_rounded,
+                color: AppColors.secondaryText,
               ),
             ],
           ),
