@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/presentation/responsive/app_breakpoints.dart';
 import '../../../../../ui/app_assets.dart';
 import '../../../../../ui/app_colors.dart';
-import '../../../../../ui/presentation/component/app_asset_icon.dart';
+import 'action/bucket_list_header_action_button.dart';
 
 class BucketListHeader extends StatelessWidget {
   final void Function() onAdd;
@@ -53,19 +53,19 @@ class BucketListHeader extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  _headerButton(
+                  BucketListHeaderActionButton(
                     asset: AppAssets.plus,
                     label: '버킷 추가',
                     onPressed: onAdd,
                   ),
                   const SizedBox(width: 8),
-                  _headerButton(
+                  BucketListHeaderActionButton(
                     asset: AppAssets.bell,
                     label: '알림',
                     onPressed: onNotifications,
                   ),
                   const SizedBox(width: 8),
-                  _headerButton(
+                  BucketListHeaderActionButton(
                     asset: AppAssets.settingsSmall,
                     label: '설정',
                     onPressed: onSettings,
@@ -76,41 +76,6 @@ class BucketListHeader extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _headerButton({
-    required String asset,
-    required String label,
-    required void Function() onPressed,
-  }) {
-    return Tooltip(
-      message: label,
-      child: Semantics(
-        label: label,
-        button: true,
-        child: Material(
-          color: AppColors.surface,
-          shape: const CircleBorder(
-            side: BorderSide(color: AppColors.controlInk),
-          ),
-          child: InkWell(
-            customBorder: const CircleBorder(),
-            onTap: onPressed,
-            child: Container(
-              width: 36,
-              height: 36,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(color: AppColors.canvas, offset: Offset(2, 2)),
-                ],
-              ),
-              child: Center(child: AppAssetIcon(asset)),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
