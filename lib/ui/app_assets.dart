@@ -9,6 +9,16 @@ abstract final class AppAssets {
   static const String sparkle3d = 'assets/images/home/sparkle_3d.png';
   static const String linkedEighthNotes3d =
       'assets/images/home/linked_eighth_notes_3d.png';
+  static const String pencil3d = 'assets/images/home/pencil_3d.png';
+  static const String calendar3d = 'assets/images/home/calendar_3d.png';
+  static const String movieProjector3d =
+      'assets/images/home/movie_projector_3d.png';
+  static const String camera3d = 'assets/images/home/camera_3d.png';
+  static const String palmIsland3d = 'assets/images/home/palm_island_3d.png';
+  static const String lightbulb3d = 'assets/images/home/lightbulb_3d.png';
+  static const String bell3d = 'assets/images/home/bell_3d.png';
+  static const String plus3d = 'assets/images/home/plus_3d.png';
+  static const String settings3d = 'assets/images/home/settings_3d.png';
   static const String connectionBadge = '$_icons/connection_badge.svg';
   static const String close = '$_icons/close.svg';
   static const String listSmall = '$_icons/list_small.svg';

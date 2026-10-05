@@ -23,8 +23,10 @@ class HomeRoundIconButton extends StatelessWidget {
         button: true,
         child: Material(
           color: AppColors.surface,
-          shape: const CircleBorder(
-            side: BorderSide(color: AppColors.controlInk),
+          shape: CircleBorder(
+            side: BorderSide(
+              color: AppColors.controlInk.withValues(alpha: 0.1),
+            ),
           ),
           child: InkWell(
             customBorder: const CircleBorder(),

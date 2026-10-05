@@ -54,19 +54,19 @@ class HomeHeader extends StatelessWidget {
                   ),
                   const SizedBox(width: 12),
                   HomeRoundIconButton(
-                    asset: AppAssets.plus,
+                    asset: AppAssets.plus3d,
                     label: '새 기록 작성',
                     onPressed: onNewRecord,
                   ),
                   const SizedBox(width: 8),
                   HomeRoundIconButton(
-                    asset: AppAssets.bell,
+                    asset: AppAssets.bell3d,
                     label: '알림',
                     onPressed: onNotifications,
                   ),
                   const SizedBox(width: 8),
                   HomeRoundIconButton(
-                    asset: AppAssets.settingsSmall,
+                    asset: AppAssets.settings3d,
                     label: '설정',
                     onPressed: onSettings,
                   ),

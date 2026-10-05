@@ -47,7 +47,6 @@ class _CultureScreenRootState extends ConsumerState<CultureScreenRoot> {
       onAction: (CultureAction action) {
         switch (action) {
           case CultureNavigateBackRequested():
-          case CultureMemberSelected():
           case CultureWorkCreationRequested():
           case CultureWorkEditRequested():
           case CultureEditorClosed():

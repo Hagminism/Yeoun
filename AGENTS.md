@@ -28,10 +28,26 @@
 2. dart 코드의 String 은 작은 따옴표를 사용한다.
 3. 콜백을 작성해야할 일이 생긴다면 축약형으로 작성하지 말고 void Function(T) 형태로 작성할 것.
 
+# Flutter UI 구성 Rules
+
+1. `presentation` 코드에서 UI 조각을 반환하는 private 메서드를 만들지 말 것. 이 규칙은 `screen` 파일뿐 아니라 `component` 위젯 내부에도 동일하게 적용한다.
+    - 예: `Widget _buildHeader()`, `Widget _buildEntryList()`, `Widget _buildPhotoTile()`
+    - `build` 메서드를 짧게 보이게 하려는 목적의 추출도 포함한다.
+2. 간단하고 한 번만 사용하는 UI 조합은 별도 메서드나 위젯 파일로 추출하지 않고 부모 위젯의 `build` 트리에 직접 작성한다.
+3. 별도 역할이나 동작이 있는 UI는 독립 위젯 클래스로 작성한다. Feature 전용 위젯은 `lib/feature/<feature>/presentation/component/` 아래에 둔다.
+4. 역할별 하위 디렉터리로 분류하는 컴포넌트 영역에서는 각 위젯을 책임에 맞는 디렉터리에서 관리한다. 해당 컴포넌트를 조립해 화면에 제공하는 상위 위젯도 역할 디렉터리에 둔다. 관련 하위 컴포넌트가 있는데 상위 위젯만 `component` 루트에 남겨두지 않는다.
+5. 새 역할이나 컴포넌트 그룹이 생기면 적절한 하위 디렉터리를 만든다. 2~3단계 하위 디렉터리를 사용할 수 있으며, 디렉터리·파일·클래스 이름은 각 위젯의 구체적인 책임을 드러내도록 한다. 역할이 분명하지 않은 범용 공용 컴포넌트는 루트에 둘 수 있다.
+6. UI를 반환하지 않는 계산이나 문자열 포맷팅 메서드와 Flutter API에 필요한 인라인 builder 콜백은 이 규칙의 대상이 아니다.
+
 # Flutter ViewModel Provider Rules
 
 1. Riverpod ViewModel provider는 별도 파일로 분리하지 않고 해당 ViewModel 파일의 최하단에 선언할 것.
 2. 이 규칙은 기존의 파일당 독립 객체 하나 규칙에 대한 ViewModel provider 선언의 예외로 적용할 것.
+
+# Flutter Form 입력 Rules
+
+1. 일반적인 텍스트 입력에는 `TextFormField`를 사용하고, 값은 `initialValue`와 `onChanged`로 관리할 것.
+2. 커서·선택 영역의 명령형 제어 등 컨트롤러가 꼭 필요한 경우에만 `TextEditingController`를 사용할 것.
 
 # 커밋 메시지 작성 rules
 
