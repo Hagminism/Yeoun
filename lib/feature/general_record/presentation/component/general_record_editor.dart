@@ -6,6 +6,7 @@ import '../screen/general_record_action.dart';
 import '../screen/general_record_state.dart';
 import 'general_record_calendar.dart';
 import 'general_record_photo_gallery.dart';
+import 'editor/general_record_editor_date_button.dart';
 
 class GeneralRecordEditor extends StatelessWidget {
   final GeneralRecordState state;
@@ -83,7 +84,17 @@ class GeneralRecordEditor extends StatelessWidget {
         const SizedBox(height: 15),
         Text('기록한 날짜', style: AppTextStyles.cardTitle),
         const SizedBox(height: 8),
-        _dateButton(date),
+        GeneralRecordEditorDateButton(
+          date: date,
+          calendarVisible: state.calendarVisible,
+          onTap: () {
+            onAction(
+              GeneralRecordAction.calendarVisibilityChanged(
+                !state.calendarVisible,
+              ),
+            );
+          },
+        ),
         if (state.calendarVisible && state.calendarMonth != null) ...[
           const SizedBox(height: 10),
           GeneralRecordCalendar(
@@ -110,81 +121,32 @@ class GeneralRecordEditor extends StatelessWidget {
           },
         ),
         const SizedBox(height: 24),
-        _saveButton(),
-      ],
-    );
-  }
-
-  Widget _dateButton(DateTime date) {
-    final visible = state.calendarVisible;
-    return Semantics(
-      button: true,
-      label: '기록 날짜 선택',
-      child: Material(
-        color: AppColors.cream,
-        borderRadius: BorderRadius.circular(12),
-        child: InkWell(
-          onTap: () {
-            onAction(GeneralRecordAction.calendarVisibilityChanged(!visible));
-          },
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.borderSoft),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.calendar_month_outlined,
-                  color: AppColors.coralDeep,
-                  size: 20,
-                ),
-                const SizedBox(width: 9),
-                Expanded(
-                  child: Text(
-                    '${date.year}년 ${date.month}월 ${date.day}일',
-                    style: AppTextStyles.body.copyWith(color: AppColors.ink),
+        Semantics(
+          button: true,
+          label: '기록 저장',
+          child: Material(
+            color: AppColors.coralDeep,
+            borderRadius: BorderRadius.circular(14),
+            child: InkWell(
+              onTap: () {
+                onAction(const GeneralRecordAction.saveRequested());
+              },
+              borderRadius: BorderRadius.circular(14),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: Text(
+                  state.editingId == null ? '기억 남기기' : '수정 완료',
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.body.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-                Icon(
-                  visible ? Icons.expand_less : Icons.expand_more,
-                  color: AppColors.secondaryText,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _saveButton() {
-    return Semantics(
-      button: true,
-      label: '기록 저장',
-      child: Material(
-        color: AppColors.coralDeep,
-        borderRadius: BorderRadius.circular(14),
-        child: InkWell(
-          onTap: () {
-            onAction(const GeneralRecordAction.saveRequested());
-          },
-          borderRadius: BorderRadius.circular(14),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            child: Text(
-              state.editingId == null ? '기억 남기기' : '수정 완료',
-              textAlign: TextAlign.center,
-              style: AppTextStyles.body.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
               ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../ui/app_colors.dart';
-import '../../../../ui/app_text_styles.dart';
 import '../../domain/model/general_record_view_mode.dart';
+import 'view_toggle/general_record_view_option.dart';
 
 class GeneralRecordViewToggle extends StatelessWidget {
   static const double _optionWidth = 76;
@@ -51,74 +51,29 @@ class GeneralRecordViewToggle extends StatelessWidget {
             ),
             Row(
               children: [
-                _buildOption(
+                GeneralRecordViewOption(
                   label: '피드',
                   icon: Icons.view_agenda_outlined,
                   mode: GeneralRecordViewMode.feed,
+                  selectedMode: selectedMode,
+                  width: _optionWidth,
+                  height: _optionHeight,
+                  animationDuration: _animationDuration,
+                  onSelected: onSelected,
                 ),
-                _buildOption(
+                GeneralRecordViewOption(
                   label: '앨범',
                   icon: Icons.grid_view_rounded,
                   mode: GeneralRecordViewMode.album,
+                  selectedMode: selectedMode,
+                  width: _optionWidth,
+                  height: _optionHeight,
+                  animationDuration: _animationDuration,
+                  onSelected: onSelected,
                 ),
               ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildOption({
-    required String label,
-    required IconData icon,
-    required GeneralRecordViewMode mode,
-  }) {
-    final bool selected = mode == selectedMode;
-
-    return Semantics(
-      button: true,
-      selected: selected,
-      label: '$label 보기',
-      child: SizedBox(
-        width: _optionWidth,
-        height: _optionHeight,
-        child: InkWell(
-          onTap: () => onSelected(mode),
-          borderRadius: BorderRadius.circular(10),
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          child: Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TweenAnimationBuilder<Color?>(
-                  tween: ColorTween(
-                    end: selected
-                        ? AppColors.coralDeep
-                        : AppColors.secondaryText,
-                  ),
-                  duration: _animationDuration,
-                  curve: Curves.easeInOutCubic,
-                  builder: (context, color, child) {
-                    return Icon(icon, size: 16, color: color);
-                  },
-                ),
-                const SizedBox(width: 5),
-                AnimatedDefaultTextStyle(
-                  duration: _animationDuration,
-                  curve: Curves.easeInOutCubic,
-                  style: AppTextStyles.caption.copyWith(
-                    color: selected ? AppColors.ink : AppColors.secondaryText,
-                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                  ),
-                  child: Text(label),
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );

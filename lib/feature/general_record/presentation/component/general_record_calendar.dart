@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../ui/app_colors.dart';
 import '../../../../ui/app_text_styles.dart';
+import 'calendar/general_record_calendar_month_button.dart';
 
 class GeneralRecordCalendar extends StatelessWidget {
   final DateTime selectedDate;
@@ -45,7 +46,7 @@ class GeneralRecordCalendar extends StatelessWidget {
         children: [
           Row(
             children: [
-              _monthButton(
+              GeneralRecordCalendarMonthButton(
                 icon: Icons.chevron_left_rounded,
                 label: '이전 달',
                 onTap: () => onMonthChanged(
@@ -59,7 +60,7 @@ class GeneralRecordCalendar extends StatelessWidget {
                   style: AppTextStyles.cardTitle,
                 ),
               ),
-              _monthButton(
+              GeneralRecordCalendarMonthButton(
                 icon: Icons.chevron_right_rounded,
                 label: '다음 달',
                 onTap: () => onMonthChanged(
@@ -132,25 +133,6 @@ class GeneralRecordCalendar extends StatelessWidget {
             },
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _monthButton({
-    required IconData icon,
-    required String label,
-    required void Function() onTap,
-  }) {
-    return Semantics(
-      button: true,
-      label: label,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(10),
-        child: Padding(
-          padding: const EdgeInsets.all(5),
-          child: Icon(icon, size: 21, color: AppColors.bodyText),
-        ),
       ),
     );
   }

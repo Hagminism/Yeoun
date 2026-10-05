@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../ui/app_colors.dart';
 import '../../../../ui/app_text_styles.dart';
 import '../../domain/model/general_record_photo.dart';
+import 'photo_viewer/general_record_photo_navigation_button.dart';
 
 class GeneralRecordPhotoViewer extends StatefulWidget {
   final List<GeneralRecordPhoto> photos;
@@ -116,9 +117,10 @@ class _GeneralRecordPhotoViewerState extends State<GeneralRecordPhotoViewer> {
                 top: 0,
                 bottom: 0,
                 child: Center(
-                  child: _navigationButton(
+                  child: GeneralRecordPhotoNavigationButton(
                     previous: true,
                     enabled: _currentIndex > 0,
+                    onTap: () => _move(-1),
                   ),
                 ),
               ),
@@ -127,9 +129,10 @@ class _GeneralRecordPhotoViewerState extends State<GeneralRecordPhotoViewer> {
                 top: 0,
                 bottom: 0,
                 child: Center(
-                  child: _navigationButton(
+                  child: GeneralRecordPhotoNavigationButton(
                     previous: false,
                     enabled: _currentIndex < widget.photos.length - 1,
+                    onTap: () => _move(1),
                   ),
                 ),
               ),
@@ -182,33 +185,6 @@ class _GeneralRecordPhotoViewerState extends State<GeneralRecordPhotoViewer> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _navigationButton({required bool previous, required bool enabled}) {
-    return Semantics(
-      button: true,
-      enabled: enabled,
-      label: previous ? '이전 사진' : '다음 사진',
-      child: Material(
-        color: AppColors.paper.withValues(alpha: enabled ? .92 : .24),
-        shape: const CircleBorder(),
-        child: InkWell(
-          onTap: enabled ? () => _move(previous ? -1 : 1) : null,
-          customBorder: const CircleBorder(),
-          child: SizedBox(
-            width: 46,
-            height: 46,
-            child: Icon(
-              previous
-                  ? Icons.chevron_left_rounded
-                  : Icons.chevron_right_rounded,
-              color: enabled ? AppColors.ink : AppColors.secondaryText,
-              size: 28,
-            ),
-          ),
         ),
       ),
     );
