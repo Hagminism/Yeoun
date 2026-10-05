@@ -28,6 +28,16 @@
 2. dart 코드의 String 은 작은 따옴표를 사용한다.
 3. 콜백을 작성해야할 일이 생긴다면 축약형으로 작성하지 말고 void Function(T) 형태로 작성할 것.
 
+# Flutter UI 구성 Rules
+
+1. `presentation` 코드에서 UI 조각을 반환하는 private 메서드를 만들지 말 것. 이 규칙은 `screen` 파일뿐 아니라 `component` 위젯 내부에도 동일하게 적용한다.
+    - 예: `Widget _buildHeader()`, `Widget _buildEntryList()`, `Widget _buildPhotoTile()`
+    - `build` 메서드를 짧게 보이게 하려는 목적의 추출도 포함한다.
+2. 간단하고 한 번만 사용하는 UI 조합은 별도 메서드나 위젯 파일로 추출하지 않고 부모 위젯의 `build` 트리에 직접 작성한다.
+3. 별도 역할이나 동작이 있는 UI는 독립 위젯 클래스로 작성한다. Feature 전용 위젯은 `lib/feature/<feature>/presentation/component/` 아래에 둔다.
+4. 컴포넌트 수가 늘어나면 역할과 도메인에 맞춰 하위 디렉터리를 추가해 분류한다. 2~3단계 하위 디렉터리를 사용할 수 있으며, 디렉터리·파일·클래스 이름은 각 위젯의 구체적인 책임을 드러내도록 한다.
+5. UI를 반환하지 않는 계산이나 문자열 포맷팅 메서드와 Flutter API에 필요한 인라인 builder 콜백은 이 규칙의 대상이 아니다.
+
 # Flutter ViewModel Provider Rules
 
 1. Riverpod ViewModel provider는 별도 파일로 분리하지 않고 해당 ViewModel 파일의 최하단에 선언할 것.
