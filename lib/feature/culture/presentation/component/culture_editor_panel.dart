@@ -10,6 +10,7 @@ import 'culture_artwork_view.dart';
 import 'culture_action_target.dart';
 import 'culture_date_picker.dart';
 import 'culture_rating_picker.dart';
+import 'editor/culture_kind_option.dart';
 
 class CultureEditorPanel extends StatefulWidget {
   final CultureWork? work;
@@ -101,11 +102,24 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
                   ],
                 ),
               ),
-              _iconAction(
-                icon: Icons.close_rounded,
-                label: '작성 닫기',
-                onTap: () =>
+              CultureActionTarget(
+                semanticLabel: '작성 닫기',
+                borderRadius: BorderRadius.circular(18),
+                onActivate: () =>
                     widget.onAction(const CultureAction.editorClosed()),
+                child: Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: AppColors.cream,
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  child: const Icon(
+                    Icons.close_rounded,
+                    color: AppColors.secondaryText,
+                    size: 19,
+                  ),
+                ),
               ),
             ],
           ),
@@ -115,7 +129,19 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: CultureKind.values.map(_kindOption).toList(),
+            children: CultureKind.values
+                .map(
+                  (CultureKind kind) => CultureKindOption(
+                    kind: kind,
+                    selected: _kind == kind,
+                    onSelected: () {
+                      setState(() {
+                        _kind = kind;
+                      });
+                    },
+                  ),
+                )
+                .toList(),
           ),
           const SizedBox(height: 18),
           TextField(
@@ -257,56 +283,60 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
           Row(
             children: [
               Expanded(
-                child: _secondaryButton(
-                  label: '취소',
-                  onTap: () =>
+                child: CultureActionTarget(
+                  semanticLabel: '취소',
+                  onActivate: () =>
                       widget.onAction(const CultureAction.editorClosed()),
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    alignment: Alignment.center,
+                    constraints: const BoxConstraints(minHeight: 48),
+                    decoration: BoxDecoration(
+                      color: AppColors.cream,
+                      border: Border.all(color: AppColors.borderSoft),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      '취소',
+                      style: AppTextStyles.body.copyWith(
+                        color: AppColors.secondaryText,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
                 flex: 2,
-                child: _primaryButton(
-                  label: '내 감상 저장',
-                  enabled: _rating != null,
-                  onTap: _save,
+                child: CultureActionTarget(
+                  semanticLabel: '내 감상 저장',
+                  onActivate: _rating != null ? _save : null,
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    alignment: Alignment.center,
+                    constraints: const BoxConstraints(minHeight: 48),
+                    decoration: BoxDecoration(
+                      color: _rating != null
+                          ? AppColors.coralDeep
+                          : AppColors.disabledControl,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      '내 감상 저장',
+                      style: AppTextStyles.body.copyWith(
+                        color: _rating != null
+                            ? AppColors.surface
+                            : AppColors.disabledText,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _kindOption(CultureKind kind) {
-    final bool selected = _kind == kind;
-    return CultureActionTarget(
-      semanticLabel: '${kind.label} 선택',
-      selected: selected,
-      borderRadius: BorderRadius.circular(20),
-      onActivate: () {
-        setState(() {
-          _kind = kind;
-        });
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 130),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        decoration: BoxDecoration(
-          color: selected ? AppColors.coralSoft : AppColors.cream,
-          border: Border.all(
-            color: selected ? AppColors.coral : AppColors.borderSoft,
-          ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          kind.label,
-          style: AppTextStyles.small.copyWith(
-            color: selected ? AppColors.coralDeep : AppColors.bodyText,
-            fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-          ),
-        ),
       ),
     );
   }
@@ -332,81 +362,6 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
         borderSide: const BorderSide(color: AppColors.coral, width: 1.3),
       ),
       counterStyle: AppTextStyles.caption,
-    );
-  }
-
-  Widget _primaryButton({
-    required String label,
-    required bool enabled,
-    required void Function() onTap,
-  }) {
-    return CultureActionTarget(
-      semanticLabel: label,
-      onActivate: enabled ? onTap : null,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        alignment: Alignment.center,
-        constraints: const BoxConstraints(minHeight: 48),
-        decoration: BoxDecoration(
-          color: enabled ? AppColors.coralDeep : AppColors.disabledControl,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Text(
-          label,
-          style: AppTextStyles.body.copyWith(
-            color: enabled ? AppColors.surface : AppColors.disabledText,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _secondaryButton({
-    required String label,
-    required void Function() onTap,
-  }) {
-    return CultureActionTarget(
-      semanticLabel: label,
-      onActivate: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        alignment: Alignment.center,
-        constraints: const BoxConstraints(minHeight: 48),
-        decoration: BoxDecoration(
-          color: AppColors.cream,
-          border: Border.all(color: AppColors.borderSoft),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Text(
-          label,
-          style: AppTextStyles.body.copyWith(
-            color: AppColors.secondaryText,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _iconAction({
-    required IconData icon,
-    required String label,
-    required void Function() onTap,
-  }) {
-    return CultureActionTarget(
-      semanticLabel: label,
-      borderRadius: BorderRadius.circular(18),
-      onActivate: onTap,
-      child: Container(
-        width: 36,
-        height: 36,
-        decoration: BoxDecoration(
-          color: AppColors.cream,
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Icon(icon, color: AppColors.secondaryText, size: 19),
-      ),
     );
   }
 

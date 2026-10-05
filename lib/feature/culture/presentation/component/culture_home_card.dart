@@ -63,7 +63,27 @@ class CultureHomeCard extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: work == null
-                  ? _emptyPreview()
+                  ? Row(
+                      children: [
+                        const Icon(
+                          Icons.auto_stories_rounded,
+                          color: AppColors.cultureText,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            '좋아한 작품과 감상을 모아보세요.',
+                            style: AppTextStyles.body.copyWith(
+                              color: AppColors.bodyText,
+                            ),
+                          ),
+                        ),
+                        const Icon(
+                          Icons.arrow_forward_rounded,
+                          color: AppColors.secondaryText,
+                        ),
+                      ],
+                    )
                   : Row(
                       children: [
                         CultureArtworkView(
@@ -143,22 +163,6 @@ class CultureHomeCard extends ConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _emptyPreview() {
-    return Row(
-      children: [
-        const Icon(Icons.auto_stories_rounded, color: AppColors.cultureText),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text(
-            '좋아한 작품과 감상을 모아보세요.',
-            style: AppTextStyles.body.copyWith(color: AppColors.bodyText),
-          ),
-        ),
-        const Icon(Icons.arrow_forward_rounded, color: AppColors.secondaryText),
-      ],
     );
   }
 }

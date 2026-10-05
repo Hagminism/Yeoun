@@ -8,6 +8,7 @@ import '../../domain/model/culture_work.dart';
 import '../screen/culture_action.dart';
 import 'culture_action_target.dart';
 import 'culture_artwork_view.dart';
+import 'review/culture_work_review_row.dart';
 
 class CultureWorkCard extends StatelessWidget {
   final CultureWork work;
@@ -127,121 +128,40 @@ class CultureWorkCard extends StatelessWidget {
             ),
             for (int index = 0; index < members.length; index++) ...[
               if (index > 0) const SizedBox(height: 11),
-              _reviewRow(members[index]),
+              CultureWorkReviewRow(
+                member: members[index],
+                activeMemberId: activeMemberId,
+                work: work,
+              ),
             ],
             const SizedBox(height: 14),
-            _reviewAction(myReview != null),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _reviewRow(CultureMember member) {
-    final CultureReview? review = work.reviewFor(member.id);
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 28,
-          height: 28,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: member.id == activeMemberId
-                ? AppColors.coralSoft
-                : AppColors.cream,
-            shape: BoxShape.circle,
-          ),
-          child: Text(
-            member.initials,
-            style: AppTextStyles.caption.copyWith(
-              color: member.id == activeMemberId
-                  ? AppColors.coralDeep
-                  : AppColors.bodyText,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-        const SizedBox(width: 9),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    member.name,
-                    style: AppTextStyles.body.copyWith(
-                      color: AppColors.ink,
-                      fontWeight: FontWeight.w700,
-                    ),
+            CultureActionTarget(
+              semanticLabel: myReview != null ? '내 감상 수정하기' : '내 감상 남기기',
+              onActivate: () =>
+                  onAction(CultureAction.workEditRequested(work.id)),
+              borderRadius: BorderRadius.circular(11),
+              child: Container(
+                constraints: const BoxConstraints(minHeight: 42),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: myReview != null
+                      ? AppColors.cream
+                      : AppColors.coralDeep,
+                  border: myReview != null
+                      ? Border.all(color: AppColors.borderSoft)
+                      : null,
+                  borderRadius: BorderRadius.circular(11),
+                ),
+                child: Text(
+                  myReview != null ? '내 감상 수정하기' : '내 감상 남기기',
+                  style: AppTextStyles.small.copyWith(
+                    color: myReview != null ? AppColors.ink : AppColors.surface,
+                    fontWeight: FontWeight.w700,
                   ),
-                  if (review != null) ...[
-                    const SizedBox(width: 6),
-                    const Icon(
-                      Icons.star_rounded,
-                      color: AppColors.cultureText,
-                      size: 15,
-                    ),
-                    Text(
-                      review.rating.toStringAsFixed(1),
-                      style: AppTextStyles.small.copyWith(
-                        color: AppColors.ink,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      _formatDate(review.reviewedAt),
-                      style: AppTextStyles.caption.copyWith(
-                        color: AppColors.disabledText,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-              const SizedBox(height: 3),
-              Text(
-                review == null
-                    ? '아직 감상을 남기지 않았어요.'
-                    : review.review.isEmpty
-                    ? '평점만 남겼어요.'
-                    : review.review,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.body.copyWith(
-                  color: review == null
-                      ? AppColors.disabledText
-                      : AppColors.bodyText,
-                  height: 1.5,
                 ),
               ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _reviewAction(bool hasReview) {
-    return CultureActionTarget(
-      semanticLabel: hasReview ? '내 감상 수정하기' : '내 감상 남기기',
-      onActivate: () => onAction(CultureAction.workEditRequested(work.id)),
-      borderRadius: BorderRadius.circular(11),
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 42),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: hasReview ? AppColors.cream : AppColors.coralDeep,
-          border: hasReview ? Border.all(color: AppColors.borderSoft) : null,
-          borderRadius: BorderRadius.circular(11),
-        ),
-        child: Text(
-          hasReview ? '내 감상 수정하기' : '내 감상 남기기',
-          style: AppTextStyles.small.copyWith(
-            color: hasReview ? AppColors.ink : AppColors.surface,
-            fontWeight: FontWeight.w700,
-          ),
+            ),
+          ],
         ),
       ),
     );
