@@ -44,6 +44,11 @@
 1. Riverpod ViewModel provider는 별도 파일로 분리하지 않고 해당 ViewModel 파일의 최하단에 선언할 것.
 2. 이 규칙은 기존의 파일당 독립 객체 하나 규칙에 대한 ViewModel provider 선언의 예외로 적용할 것.
 
+# Flutter Form 입력 Rules
+
+1. 일반적인 텍스트 입력에는 `TextFormField`를 사용하고, 값은 `initialValue`와 `onChanged`로 관리할 것.
+2. 커서·선택 영역의 명령형 제어 등 컨트롤러가 꼭 필요한 경우에만 `TextEditingController`를 사용할 것.
+
 # 커밋 메시지 작성 rules
 
 커밋 메시지를 작성할 때에는 다음과 같은 형태를 따를 것.

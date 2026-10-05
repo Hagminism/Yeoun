@@ -22,17 +22,17 @@ class CultureRatingPicker extends StatelessWidget {
       label: '10점 만점 평점',
       value: rating == null ? '선택하지 않음' : '$score점',
       increasedValue: rating == null
-          ? '0.5점'
-          : '${(rating! + .5).clamp(.5, 10).toStringAsFixed(1)}점',
+          ? '1점'
+          : '${(rating! + 1).clamp(1, 10).toStringAsFixed(1)}점',
       decreasedValue: rating == null
           ? '선택하지 않음'
-          : '${(rating! - .5).clamp(.5, 10).toStringAsFixed(1)}점',
+          : '${(rating! - 1).clamp(1, 10).toStringAsFixed(1)}점',
       onIncrease: () {
-        onChanged(((rating ?? 0) + .5).clamp(.5, 10).toDouble());
+        onChanged(((rating ?? 0) + 1).clamp(1, 10).toDouble());
       },
       onDecrease: () {
         if (rating != null) {
-          onChanged((rating! - .5).clamp(.5, 10).toDouble());
+          onChanged((rating! - 1).clamp(1, 10).toDouble());
         }
       },
       child: Column(
@@ -41,16 +41,20 @@ class CultureRatingPicker extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                '나의 평점',
-                style: AppTextStyles.cardTitle.copyWith(fontSize: 14),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                '0.5 단위로 선택',
-                style: AppTextStyles.small.copyWith(
-                  color: AppColors.secondaryText,
-                ),
+              Row(crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '나의 평점',
+                    style: AppTextStyles.cardTitle.copyWith(fontSize: 16),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    '1점 단위로 선택',
+                    style: AppTextStyles.small.copyWith(
+                      color: AppColors.secondaryText,
+                    ),
+                  ),
+                ],
               ),
               const Spacer(),
               Text(
@@ -59,7 +63,7 @@ class CultureRatingPicker extends StatelessWidget {
                   fontSize: 22,
                   color: rating == null
                       ? AppColors.disabledText
-                      : AppColors.cultureText,
+                      : AppColors.coralDeep,
                   fontFeatures: const <FontFeature>[
                     FontFeature.tabularFigures(),
                   ],
@@ -86,11 +90,9 @@ class CultureRatingPicker extends StatelessWidget {
                 selected: fill > 0,
                 onActivate: () => onChanged((index * 2 + 1).toDouble()),
                 onTapUp: (TapUpDetails details) {
-                  final double step = (details.localPosition.dx / 48 * 4)
-                      .ceilToDouble()
-                      .clamp(1, 4)
-                      .toDouble();
-                  final double value = index * 2 + step * .5;
+                  final double value =
+                      (index * 2 + (details.localPosition.dx < 24 ? 1 : 2))
+                          .toDouble();
                   onChanged(value);
                 },
                 borderRadius: BorderRadius.circular(8),
@@ -116,7 +118,7 @@ class CultureRatingPicker extends StatelessWidget {
                                 width: 34,
                                 child: Icon(
                                   Icons.star_rounded,
-                                  color: AppColors.cultureText,
+                                  color: AppColors.coralDeep,
                                   size: 34,
                                 ),
                               ),

@@ -42,7 +42,7 @@ class CulturePageHeader extends StatelessWidget {
           const SizedBox(width: 9),
           Expanded(
             child: Text(
-              '문화 기록장',
+              '문화 생활',
               style: AppTextStyles.header.copyWith(fontSize: 18),
             ),
           ),

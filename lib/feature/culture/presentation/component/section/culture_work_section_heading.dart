@@ -16,28 +16,23 @@ class CultureWorkSectionHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'OUR SHELF',
-                style: AppTextStyles.caption.copyWith(
-                  color: AppColors.secondaryText,
-                  letterSpacing: .9,
-                  fontSize: 9,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text('함께 남긴 작품', style: AppTextStyles.heading),
-            ],
+          child: Text(
+            '마음에 남은 작품',
+            style: AppTextStyles.heading.copyWith(fontSize: 18),
           ),
         ),
-        Text(
-          '작품 $workCount · 감상 $reviewCount',
-          style: AppTextStyles.caption.copyWith(color: AppColors.secondaryText),
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Text(
+            '작품 $workCount',
+            style: AppTextStyles.caption.copyWith(
+              color: AppColors.bodyText,
+              fontSize: 12,
+            ),
+          ),
         ),
       ],
     );

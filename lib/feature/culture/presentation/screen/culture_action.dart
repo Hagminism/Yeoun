@@ -8,8 +8,6 @@ part 'culture_action.freezed.dart';
 sealed class CultureAction with _$CultureAction {
   const factory CultureAction.navigateBackRequested() =
       CultureNavigateBackRequested;
-  const factory CultureAction.memberSelected(String memberId) =
-      CultureMemberSelected;
   const factory CultureAction.workCreationRequested() =
       CultureWorkCreationRequested;
   const factory CultureAction.workEditRequested(String workId) =

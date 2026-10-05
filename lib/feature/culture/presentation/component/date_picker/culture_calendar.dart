@@ -36,11 +36,11 @@ class CultureCalendar extends StatelessWidget {
     );
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
+      padding: const EdgeInsets.fromLTRB(13, 12, 13, 13),
       decoration: BoxDecoration(
-        color: AppColors.cream,
+        color: AppColors.paper,
         border: Border.all(color: AppColors.borderSoft),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         children: [
@@ -71,7 +71,7 @@ class CultureCalendar extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 3),
+          const SizedBox(height: 8),
           Row(
             children: <String>['월', '화', '수', '목', '금', '토', '일']
                 .map(
@@ -90,15 +90,17 @@ class CultureCalendar extends StatelessWidget {
                 )
                 .toList(),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 5),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 7,
+              mainAxisSpacing: 3,
+              crossAxisSpacing: 3,
               mainAxisExtent: 36,
             ),
-            itemCount: 42,
+            itemCount: ((firstWeekday - 1 + daysInMonth + 6) ~/ 7) * 7,
             itemBuilder: (BuildContext context, int index) {
               final int day = index - (firstWeekday - 1) + 1;
               if (day < 1 || day > daysInMonth) {
@@ -117,32 +119,30 @@ class CultureCalendar extends StatelessWidget {
                 semanticLabel: '${date.year}년 ${date.month}월 ${date.day}일 선택',
                 selected: isSelected,
                 onActivate: isFuture ? null : () => onDateSelected(date),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(9),
                 child: Center(
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 140),
-                    width: 30,
-                    height: 30,
-                    alignment: Alignment.center,
+                  child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: isSelected
                           ? AppColors.coralDeep
                           : Colors.transparent,
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(9),
                     ),
-                    child: Text(
-                      '$day',
-                      style: AppTextStyles.small.copyWith(
-                        color: isSelected
-                            ? AppColors.surface
-                            : isFuture
-                            ? AppColors.disabledText
-                            : isSunday
-                            ? AppColors.coralDeep
-                            : AppColors.ink,
-                        fontWeight: isSelected
-                            ? FontWeight.w700
-                            : FontWeight.w500,
+                    child: Center(
+                      child: Text(
+                        '$day',
+                        style: AppTextStyles.small.copyWith(
+                          color: isSelected
+                              ? AppColors.surface
+                              : isFuture
+                              ? AppColors.disabledText
+                              : isSunday
+                              ? AppColors.coralDeep
+                              : AppColors.ink,
+                          fontWeight: isSelected
+                              ? FontWeight.w700
+                              : FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),

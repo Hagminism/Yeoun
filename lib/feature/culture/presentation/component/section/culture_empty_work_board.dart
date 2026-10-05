@@ -10,23 +10,24 @@ class CultureEmptyWorkBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 28),
-      decoration: BoxDecoration(
-        color: AppColors.cream,
-        border: Border.all(color: AppColors.borderSoft),
-        borderRadius: BorderRadius.circular(16),
-      ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 32),
       child: Column(
         children: [
-          const AppAssetIcon(AppAssets.movieProjector3d, width: 34, height: 34),
-          const SizedBox(height: 9),
-          Text('첫 작품을 기록해 볼까요?', style: AppTextStyles.cardTitle),
-          const SizedBox(height: 4),
+          const AppAssetIcon(AppAssets.movieProjector3d, width: 64, height: 64),
+          const SizedBox(height: 18),
           Text(
-            '영화부터 음악까지, 오래 간직하고 싶은 감상을 모아보세요.',
+            '아직 기록한 작품이 없어요',
+            style: AppTextStyles.cardTitle.copyWith(fontSize: 18),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            '첫 작품과 감상을 남겨 취향의 기록을 시작해 보세요.',
             textAlign: TextAlign.center,
-            style: AppTextStyles.small.copyWith(color: AppColors.secondaryText),
+            style: AppTextStyles.small.copyWith(
+              color: AppColors.secondaryText,
+              fontSize: 14,
+            ),
           ),
         ],
       ),

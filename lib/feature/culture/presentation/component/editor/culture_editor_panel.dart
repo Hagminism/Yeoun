@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yeoun/ui/app_assets.dart';
 
 import '../../../../../ui/app_colors.dart';
 import '../../../../../ui/app_text_styles.dart';
+import '../../../../../ui/presentation/component/app_card_surface.dart';
 import '../../../domain/model/culture_kind.dart';
 import '../../../domain/model/culture_review.dart';
 import '../../../domain/model/culture_work.dart';
@@ -37,8 +39,8 @@ class CultureEditorPanel extends StatefulWidget {
 }
 
 class _CultureEditorPanelState extends State<CultureEditorPanel> {
-  late final TextEditingController _titleController;
-  late final TextEditingController _reviewController;
+  late String _title;
+  late String _review;
   late CultureKind _kind;
   late DateTime _reviewedAt;
   double? _rating;
@@ -47,21 +49,12 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.work?.title ?? '');
-    _reviewController = TextEditingController(
-      text: widget.existingReview?.review ?? '',
-    );
+    _title = widget.work?.title ?? '';
+    _review = widget.existingReview?.review ?? '';
     _kind = widget.work?.kind ?? CultureKind.movie;
-    _rating = widget.existingReview?.rating;
+    _rating = widget.existingReview?.rating.roundToDouble();
     _reviewedAt =
         widget.existingReview?.reviewedAt ?? DateUtils.dateOnly(DateTime.now());
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _reviewController.dispose();
-    super.dispose();
   }
 
   @override
@@ -71,13 +64,10 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
         ? widget.pendingArtworkBase64
         : work?.artworkBase64 ?? '';
 
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        border: Border.all(color: AppColors.coral.withValues(alpha: .36)),
-        borderRadius: BorderRadius.circular(18),
-      ),
+    return AppCardSurface(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      radius: 16,
+      offset: 3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -90,13 +80,17 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
                   children: [
                     Text(
                       work == null ? '새로운 작품' : '감상 다시 남기기',
-                      style: AppTextStyles.heading.copyWith(fontSize: 18),
+                      style: AppTextStyles.heading.copyWith(
+                        height: 1.3,
+                        fontSize: 22,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '${widget.memberName}님의 감상은 이 작품에 한 번만 남길 수 있어요.',
                       style: AppTextStyles.small.copyWith(
                         color: AppColors.secondaryText,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -124,7 +118,7 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
             ],
           ),
           const SizedBox(height: 18),
-          Text('작품 종류', style: AppTextStyles.cardTitle.copyWith(fontSize: 14)),
+          Text('작품 종류', style: AppTextStyles.cardTitle),
           const SizedBox(height: 9),
           Wrap(
             spacing: 8,
@@ -144,20 +138,15 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
                 .toList(),
           ),
           const SizedBox(height: 18),
-          TextField(
-            controller: _titleController,
+          TextFormField(
+            initialValue: _title,
+            onChanged: (String value) => _title = value,
             textCapitalization: TextCapitalization.sentences,
-            decoration: _inputDecoration(
-              label: '작품명',
-              hint: '기억하고 싶은 작품을 적어주세요',
-            ),
+            decoration: _inputDecoration(hint: '기억하고 싶은 작품을 적어주세요'),
             style: AppTextStyles.body.copyWith(color: AppColors.ink),
           ),
           const SizedBox(height: 15),
-          Text(
-            '대표 이미지 · 선택',
-            style: AppTextStyles.cardTitle.copyWith(fontSize: 14),
-          ),
+          Text('대표 이미지 · 선택', style: AppTextStyles.cardTitle),
           const SizedBox(height: 8),
           Row(
             children: [
@@ -177,7 +166,7 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
                       semanticLabel: widget.isPickingArtwork
                           ? '이미지 불러오는 중'
                           : '대표 이미지 선택',
-                      borderRadius: BorderRadius.circular(11),
+                      borderRadius: BorderRadius.circular(14),
                       onActivate: widget.isPickingArtwork
                           ? null
                           : () => widget.onAction(
@@ -192,19 +181,17 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
                         decoration: BoxDecoration(
                           color: AppColors.cream,
                           border: Border.all(color: AppColors.borderSoft),
-                          borderRadius: BorderRadius.circular(11),
+                          borderRadius: BorderRadius.circular(14),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              widget.isPickingArtwork
-                                  ? Icons.hourglass_top_rounded
-                                  : Icons.add_photo_alternate_outlined,
-                              size: 17,
-                              color: AppColors.cultureText,
+                            Image.asset(
+                              AppAssets.camera3d,
+                              height: 20,
+                              width: 20,
                             ),
-                            const SizedBox(width: 7),
+                            const SizedBox(width: 4),
                             Text(
                               widget.isPickingArtwork
                                   ? '사진을 불러오는 중'
@@ -218,11 +205,12 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 8),
                     Text(
-                      '작품을 떠올릴 수 있는 사진 한 장',
+                      '작품을 떠올릴 수 있는 사진 한 장을 골라주세요.',
                       style: AppTextStyles.caption.copyWith(
                         color: AppColors.secondaryText,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -257,14 +245,14 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
             },
           ),
           const SizedBox(height: 15),
-          TextField(
-            controller: _reviewController,
+          TextFormField(
+            initialValue: _review,
+            onChanged: (String value) => _review = value,
             maxLines: 4,
             minLines: 3,
             maxLength: 1000,
             textCapitalization: TextCapitalization.sentences,
             decoration: _inputDecoration(
-              label: '감상평 · 선택',
               hint: '이 작품을 보고 느낀 점을 남겨보세요',
             ).copyWith(alignLabelWithHint: true),
             style: AppTextStyles.body.copyWith(
@@ -279,7 +267,7 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
               style: AppTextStyles.small.copyWith(color: AppColors.coralDeep),
             ),
           ],
-          const SizedBox(height: 5),
+          const SizedBox(height: 15),
           Row(
             children: [
               Expanded(
@@ -287,14 +275,14 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
                   semanticLabel: '취소',
                   onActivate: () =>
                       widget.onAction(const CultureAction.editorClosed()),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(14),
                   child: Container(
                     alignment: Alignment.center,
                     constraints: const BoxConstraints(minHeight: 48),
                     decoration: BoxDecoration(
                       color: AppColors.cream,
                       border: Border.all(color: AppColors.borderSoft),
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
                     ),
                     child: Text(
                       '취소',
@@ -312,7 +300,7 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
                 child: CultureActionTarget(
                   semanticLabel: '내 감상 저장',
                   onActivate: _rating != null ? _save : null,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(14),
                   child: Container(
                     alignment: Alignment.center,
                     constraints: const BoxConstraints(minHeight: 48),
@@ -341,32 +329,31 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
     );
   }
 
-  InputDecoration _inputDecoration({
-    required String label,
-    required String hint,
-  }) {
+  InputDecoration _inputDecoration({required String hint}) {
     return InputDecoration(
-      labelText: label,
       hintText: hint,
-      hintStyle: AppTextStyles.small.copyWith(color: AppColors.disabledText),
+      hintStyle: AppTextStyles.small.copyWith(
+        color: AppColors.disabledText,
+        fontSize: 14,
+      ),
       labelStyle: AppTextStyles.small.copyWith(color: AppColors.secondaryText),
       filled: true,
-      fillColor: AppColors.paper,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+      fillColor: AppColors.surface,
+      contentPadding: const EdgeInsets.all(16),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(11),
+        borderRadius: BorderRadius.circular(16),
         borderSide: const BorderSide(color: AppColors.borderSoft),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(11),
-        borderSide: const BorderSide(color: AppColors.coral, width: 1.3),
+        borderRadius: BorderRadius.circular(16),
+        borderSide: const BorderSide(color: AppColors.coralDeep, width: 1.4),
       ),
       counterStyle: AppTextStyles.caption,
     );
   }
 
   void _save() {
-    if (_titleController.text.trim().isEmpty) {
+    if (_title.trim().isEmpty) {
       setState(() {
         _validationMessage = '작품명을 입력해 주세요.';
       });
@@ -383,9 +370,9 @@ class _CultureEditorPanelState extends State<CultureEditorPanel> {
       CultureAction.workSaved(
         workId: widget.work?.id,
         kind: _kind,
-        title: _titleController.text,
+        title: _title,
         rating: selectedRating,
-        review: _reviewController.text,
+        review: _review,
         reviewedAt: _reviewedAt,
       ),
     );

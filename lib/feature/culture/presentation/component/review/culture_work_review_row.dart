@@ -63,7 +63,7 @@ class CultureWorkReviewRow extends StatelessWidget {
                     const SizedBox(width: 6),
                     const Icon(
                       Icons.star_rounded,
-                      color: AppColors.cultureText,
+                      color: AppColors.coralDeep,
                       size: 15,
                     ),
                     Text(

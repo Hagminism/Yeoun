@@ -29,9 +29,6 @@ class CultureKindOption extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: selected ? AppColors.coralSoft : AppColors.cream,
-          border: Border.all(
-            color: selected ? AppColors.coral : AppColors.borderSoft,
-          ),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(

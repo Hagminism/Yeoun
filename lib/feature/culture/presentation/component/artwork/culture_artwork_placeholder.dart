@@ -20,27 +20,27 @@ class CultureArtworkPlaceholder extends StatelessWidget {
       ),
       CultureKind.book => const Icon(
         Icons.menu_book_rounded,
-        color: AppColors.cultureText,
+        color: AppColors.coralDeep,
         size: 28,
       ),
       CultureKind.game => const Icon(
         Icons.sports_esports_rounded,
-        color: AppColors.cultureText,
+        color: AppColors.coralDeep,
         size: 28,
       ),
       CultureKind.music => const Icon(
         Icons.music_note_rounded,
-        color: AppColors.cultureText,
+        color: AppColors.coralDeep,
         size: 28,
       ),
       CultureKind.performance => const Icon(
         Icons.theater_comedy_rounded,
-        color: AppColors.cultureText,
+        color: AppColors.coralDeep,
         size: 28,
       ),
       CultureKind.other => const Icon(
         Icons.auto_awesome_rounded,
-        color: AppColors.cultureText,
+        color: AppColors.coralDeep,
         size: 28,
       ),
     };

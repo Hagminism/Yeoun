@@ -30,12 +30,6 @@ class CultureViewModel extends Notifier<CultureState> {
     switch (action) {
       case CultureNavigateBackRequested():
         _events.add(const CultureEvent.navigateBack());
-      case CultureMemberSelected(:final memberId):
-        if (state.members.any(
-          (CultureMember member) => member.id == memberId,
-        )) {
-          state = state.copyWith(activeMemberId: memberId, editorMessage: null);
-        }
       case CultureWorkCreationRequested():
         state = state.copyWith(
           editorVisible: true,
@@ -95,11 +89,8 @@ class CultureViewModel extends Notifier<CultureState> {
     required DateTime reviewedAt,
   }) {
     final String cleanTitle = title.trim();
-    if (cleanTitle.isEmpty ||
-        rating < .5 ||
-        rating > 10 ||
-        rating * 2 % 1 != 0) {
-      state = state.copyWith(editorMessage: '작품명과 0.5 단위 평점을 확인해 주세요.');
+    if (cleanTitle.isEmpty || rating < 1 || rating > 10 || rating % 1 != 0) {
+      state = state.copyWith(editorMessage: '작품명과 1점 단위 평점을 확인해 주세요.');
       return;
     }
 
